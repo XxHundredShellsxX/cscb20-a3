@@ -7,25 +7,14 @@
       $username = $_POST['username'];
       $password = $_POST['password'];
 
-      if ($username == "test@test" && $password == "test") {
-        $_SESSION['user_id'] = $id;
-        $_SESSION['user_login'] = $login;
-        $_SESSION['user_name'] = $name;
+      if ($username == "test" && $password == "test") {
+        $_SESSION['username'] = $username;
+        $_SESSION['token'] = generateToken();
       }
-      
-      // $sql = "SELECT id FROM admin WHERE username = '$myusername' and password = '$mypassword'";
-      // $result = mysqli_query($db,$sql);
-      // $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      // $count = mysqli_num_rows($result);
-      
-      // // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      // if($count == 1) {
-      //    $_SESSION['login_user'] = $myusername;
-      //    header("Location: welcome.php");
-      // }else {
-      //    $error = "Your Login Name or Password is invalid";
-      // }
+   }
+
+   function generateToken() {
+     return md5(uniqid(rand(), true));
    }
 ?>
 <html>

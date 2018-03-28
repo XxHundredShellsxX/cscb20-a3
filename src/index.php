@@ -2,9 +2,7 @@
 
   session_start();
    
-  if(isset($_SESSION['token'])){ // OR isset($_SESSION['user']), if array
-    // Logged In
-  } else{
+  if (!isset($_SESSION['token'])){
     header('Location: ./auth/login/', false, 401);
   }
 ?>
