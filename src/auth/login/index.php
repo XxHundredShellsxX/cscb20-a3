@@ -8,6 +8,7 @@
     $password = $_POST['password'];
     if ($username == "test" && $password == "test") {
       $_SESSION['username'] = $username;
+      $_SESSION['name'] = "Rikin Katyal";
       $_SESSION['token']    = generateToken();
       header('Location:../../dashboard/', false);
     } else {
@@ -46,6 +47,16 @@
     <div id="center-container">
       <h1>login to cscb20</h1>
       <form action="" method="POST">
+        <div class="radio-toolbar">
+          <input type="radio" id="student" name="radios" value="student" checked>
+          <label for="student">student</label>
+
+          <input type="radio" id="teacher" name="radios" value="teacher">
+          <label for="teacher">teacher</label>
+
+          <input type="radio" id="ta" name="radios" value="ta">
+          <label for="ta">t.a.</label>
+        </div>
         <input type="text" name="username" placeholder="username" required>
         <input type="password" name="password" placeholder="password" required>
         <button>login</button>

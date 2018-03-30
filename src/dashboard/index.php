@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../css/feather.css">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
   
-    <title>Assignments | CSCB20</title>
+    <title>Dashboard | CSCB20</title>
 </head>
 <body>
   <div id="container">
@@ -43,9 +43,22 @@
           </nav>
         </div>
     <div id="content">
-      <h1>welcome back, {name}</h1>
-      <h2>Overview</h2>
-      <p>Here are the assignment and exercise topics, weights, and due dates. I will be posting the exercise and assignment handouts here. All exercises and assignments will be submitted on <i>MarkUs</i>. You can find a link to it in the <i>course links</i> section.</p>
+      <h1>welcome back, <?php echo $_SESSION['name'] ?></h1>
+      <h2>your overview</h2>
+      <div class="overview">
+        <div class="card">
+          <h2>mark</h2>
+          <h3>92%</h3>
+        </div>
+        <div class="card">
+          <h2>upcoming</h2>
+          <h3>final exam</h3>
+        </div>
+        <div class="card">
+          <h2>tutorial section</h2>
+          <h3>tut 1</h3>
+        </div>
+      </div>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>
