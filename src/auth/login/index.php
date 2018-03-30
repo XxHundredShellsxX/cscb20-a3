@@ -1,21 +1,29 @@
 <?php
   //  include("config.php");
-   session_start();
-   
-   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+  session_start();
 
-      if ($username == "test" && $password == "test") {
-        $_SESSION['username'] = $username;
-        $_SESSION['token'] = generateToken();
-      }
-   }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // username and password sent from form
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if ($username == "test" && $password == "test") {
+      $_SESSION['username'] = $username;
+      $_SESSION['token']    = generateToken();
+      header('Location:../../dashboard/', false);
+    } else {
+      alert("Wrong login");
+    }
+  }
 
-   function generateToken() {
-     return md5(uniqid(rand(), true));
-   }
+  function generateToken()
+  {
+    return md5(uniqid(rand(), true));
+  }
+
+  function alert($msg)
+  {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+  }
 ?>
 <html>
   <head>
@@ -35,7 +43,7 @@
       <h1>Login to CSCB20</h1>
       <form action="" method="POST">
         <input type="text" name="username" placeholder="Username" required>
-        <input type="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Password" required>
         <button>Login</button>
       </form>
     </div>

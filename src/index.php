@@ -1,9 +1,8 @@
 <?php
 
   session_start();
-   
   if (!isset($_SESSION['token'])){
-    header('Location: ./auth/login/', false, 401);
+    header("Location:./auth/login");
   }
 ?>
 <html lang="en">
