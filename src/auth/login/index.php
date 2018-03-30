@@ -7,11 +7,11 @@
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // username and password sent from form
-    $username = $_POST['username'];
+    // UTORid and password sent from form
+    $UTORid = $_POST['UTORid'];
     $password = $_POST['password'];
-    if ($username == "test" && $password == "test") {
-      $_SESSION['username'] = $username;
+    if ($UTORid == "test" && $password == "test") {
+      $_SESSION['UTORid'] = $UTORid;
       $_SESSION['name'] = "Rikin Katyal";
       $_SESSION['token']    = generateToken();
       header('Location:../../dashboard/', false);
@@ -61,7 +61,7 @@
           <input type="radio" id="ta" name="radios" value="ta">
           <label for="ta">t.a.</label>
         </div>
-        <input type="text" name="username" placeholder="username" required>
+        <input type="text" name="UTORid" placeholder="UTORid" required>
         <input type="password" name="password" placeholder="password" required>
         <button>login</button>
       </form>
