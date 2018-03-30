@@ -2,6 +2,10 @@
   //  include("config.php");
   session_start();
 
+  if (isset($_SESSION['token'])){
+    header("Location:../../dashboard");
+  }
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
     $username = $_POST['username'];
@@ -61,6 +65,7 @@
         <input type="password" name="password" placeholder="password" required>
         <button>login</button>
       </form>
+      <a href="../signup/">i don't have an account. signup.</a>
     </div>
   </body>
 </html>

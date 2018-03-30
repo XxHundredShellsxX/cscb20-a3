@@ -28,27 +28,32 @@
         <div class="nav-item active">
           <h2><i class="feather icon-home"></i>home</h2>
         </div>
+        <a href="./dashboard">
+          <div class="nav-item">
+            <h2><i class="feather icon-layers"></i>dashboard</h2>
+          </div>
+        </a>
         <a href="./files/syllabus.pdf" target="_">
           <div class="nav-item">
             <h2><i class="feather icon-file-text"></i>syllabus</h2>
           </div>
         </a>
-        <a href="./assignments/index.html">
+        <a href="./assignments/index.php">
           <div class="nav-item">
             <h2><i class="feather icon-edit"></i>assignments</h2>
           </div>
         </a>
-        <a href="./lectures/index.html">
+        <a href="./lectures/index.php">
           <div class="nav-item">
             <h2><i class="feather icon-folder"></i>lecture notes</h2>
           </div>
         </a>
-        <a href="./labs/index.html">
+        <a href="./labs/index.php">
           <div class="nav-item">
             <h2><i class="feather icon-clipboard"></i>labs</h2>
           </div>
         </a>
-        <a href="./calendar/index.htmlindex.html">
+        <a href="./calendar/index.phpindex.php">
           <div class="nav-item">
             <h2><i class="feather icon-calendar"></i>calendar</h2>
           </div>
@@ -68,12 +73,12 @@
             </div>
           </a>
         </div>
-        <a href="./software/index.html">
+        <a href="./software/index.php">
           <div class="nav-item">
             <h2><i class="feather icon-download-cloud"></i>course software</h2>
           </div>
         </a>
-        <a href="./feedback/index.html">
+        <a href="./feedback/index.php">
           <div class="nav-item">
             <h2><i class="feather icon-message-square"></i>feedback</h2>
           </div>

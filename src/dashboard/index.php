@@ -23,7 +23,7 @@
       <div id="sidebar">
           <div id="menu" class="round-button" onclick="toggleMenu()"><i class="feather icon-menu"></i></div>
           <h1>cscb20</h1>
-          <h4>dashboard</h4>
+          <h4>introduction to databases & web applications</h4>
           <nav>
             <a href="../">
               <div class="nav-item">
