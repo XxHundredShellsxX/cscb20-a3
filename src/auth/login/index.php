@@ -15,6 +15,10 @@
     }
   }
 
+  if ($_GET['ref'] == "logout") {
+    alert("Successfully logged out");
+  }
+
   function generateToken()
   {
     return md5(uniqid(rand(), true));
@@ -40,11 +44,11 @@
   </head>
   <body>
     <div id="center-container">
-      <h1>Login to CSCB20</h1>
+      <h1>login to cscb20</h1>
       <form action="" method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button>Login</button>
+        <input type="text" name="username" placeholder="username" required>
+        <input type="password" name="password" placeholder="password" required>
+        <button>login</button>
       </form>
     </div>
   </body>
