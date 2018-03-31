@@ -54,13 +54,13 @@
       <form action="" method="POST">
         <div class="radio-toolbar">
           <input type="radio" id="student" name="radios" value="student" checked>
-          <label for="student">student</label>
+          <label for="student" id="student-label">student</label>
 
           <input type="radio" id="instructor" name="radios" value="instructor">
           <label for="instructor">instructor</label>
 
           <input type="radio" id="ta" name="radios" value="ta">
-          <label for="ta">t.a.</label>
+          <label for="ta" id="ta-label">t.a.</label>
         </div>
         <input type="text" name="UTORid" placeholder="UTORid" required>
         <input type="password" name="password" placeholder="password" required>
