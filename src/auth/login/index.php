@@ -1,5 +1,5 @@
 <?php
-  //  include("config.php");
+  include("config.php");
   session_start();
 
   if (isset($_SESSION['token'])){
@@ -10,6 +10,7 @@
     // UTORid and password sent from form
     $UTORid = $_POST['UTORid'];
     $password = $_POST['password'];
+    $result = mysqli_query($db, "CREATE TABLE students");
     if ($UTORid == "test" && $password == "test") {
       $_SESSION['UTORid'] = $UTORid;
       $_SESSION['name'] = "Rikin Katyal";
@@ -55,8 +56,8 @@
           <input type="radio" id="student" name="radios" value="student" checked>
           <label for="student">student</label>
 
-          <input type="radio" id="teacher" name="radios" value="teacher">
-          <label for="teacher">teacher</label>
+          <input type="radio" id="instructor" name="radios" value="instructor">
+          <label for="instructor">instructor</label>
 
           <input type="radio" id="ta" name="radios" value="ta">
           <label for="ta">t.a.</label>
