@@ -1,5 +1,5 @@
 <?php
-  include("config.php");
+  include("../config.php");
   session_start();
 
   if (isset($_SESSION['token'])){
@@ -9,15 +9,13 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // UTORid and password sent from form
     $UTORid = $_POST['UTORid'];
-    $password = $_POST['password'];
-    $sql = "SELECT * FROM Students WHERE utorid = '$UTORid'";
-    $result = mysqli_query($db,$sql);
-    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $password = hash('sha256', $_POST['password']);
+    $sql = "select * from Students where utorid = '$UTORid' and pass = '$password'";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
-    if (count == 1) {
-      $_SESSION['UTORid'] = $result["utorid"];
-      $_SESSION['name'] = $result["student_name"];
-      $_SESSION['token']    = generateToken();
+    if ($count == 1) {
+      $_SESSION['token'] = generateToken();
       header('Location:../../dashboard/', false);
     } else {
       alert("Wrong login");
@@ -28,13 +26,11 @@
     alert("Successfully logged out");
   }
 
-  function generateToken()
-  {
+  function generateToken() {
     return md5(uniqid(rand(), true));
   }
 
-  function alert($msg)
-  {
+  function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
   }
 ?>
