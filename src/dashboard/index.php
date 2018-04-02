@@ -1,8 +1,19 @@
 <?php
-  //  include("config.php");
+  include("../auth/config.php");
   session_start();
   if (!isset($_SESSION['token'])){
     header("Location:../auth/login");
+  }
+  $mark =  calculate_mark();
+  function calculate_mark() {
+    $sql = "select * from CourseDetails where courseCode='CSCB20'";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $mark = 0;
+    foreach($mark_entries as $entry) {
+      $mark += $_SESSION[$entry] * $row[$entry];
+    }
+    return $mark;
   }
 ?>
 <html lang="en">
@@ -43,12 +54,12 @@
           </nav>
         </div>
     <div id="content">
-      <h1>welcome back, <?php echo $_SESSION['name'] ?></h1>
+      <h1>welcome back, <?php echo $_SESSION['firstName'] ?></h1>
       <h2>your overview</h2>
       <div class="overview">
         <div class="card">
           <h2>mark</h2>
-          <h3>00%</h3>
+          <h3><?php echo $mark ?>%</h3>
         </div>
         <div class="card">
           <h2>upcoming</h2>
