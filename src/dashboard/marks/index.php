@@ -1,8 +1,8 @@
 <?php
-  include("../auth/config.php");
+  include("../../auth/config.php");
   session_start();
   if (!isset($_SESSION['token'])){
-    header("Location:../auth/login");
+    header("Location:../../auth/login");
   }
   $mark = calculate_mark();
   function calculate_mark() {
@@ -24,10 +24,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-    <script src="../js/index.js"></script>
+    <script src="../../js/index.js"></script>
   
-    <link rel="stylesheet" type="text/css" href="../css/feather.css">
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../css/feather.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
   
     <title>Dashboard | CSCB20</title>
 </head>
@@ -38,22 +38,22 @@
           <h1>cscb20</h1>
           <h4>introduction to databases & web applications</h4>
           <nav>
-            <a href="../">
+            <a href="../../">
               <div class="nav-item">
                 <h2><i class="feather icon-home"></i>home</h2>
               </div>
             </a>
-            <a href="./">
-              <div class="nav-item active">
+            <a href="../">
+              <div class="nav-item">
                 <h2><i class="feather icon-monitor"></i>dashboard</h2>
               </div>
             </a>
-            <a href="./<?php if ($_SESSION['account'] == 'instructor') echo "instructor/" ?>marks/">
-              <div class="nav-item">
+            <a href="./">
+              <div class="nav-item active">
                 <h2><i class="feather icon-hash"></i>marks</h2>
               </div>
             </a>
-            <a href="../auth/logout/">
+            <a href="../../auth/logout/">
               <div class="nav-item">
                 <h2><i class="feather icon-log-out"></i>logout</h2>
               </div>
@@ -61,19 +61,9 @@
           </nav>
         </div>
     <div id="content">
-      <h1>welcome back, <?php echo $_SESSION['firstName'] ?></h1>
-      <h2>your overview</h2>
+      <h1>your marks</h1>
+      <h2>current mark: <?php echo $mark?>%</h2>
       <div class="overview">
-        <div class="card">
-          <?php
-            if ($_SESSION['account'] == 'student') {
-              echo "<h2>your mark</h2>";
-              echo "<h3>$mark%</h3>";
-            } else {
-              echo "class average";
-            }
-          ?>
-        </div>
         <div class="card">
           <h2>upcoming</h2>
           <h3>final exam</h3>

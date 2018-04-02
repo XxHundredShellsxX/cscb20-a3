@@ -9,19 +9,65 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // UTORid and password sent from form
     $UTORid = $_POST['UTORid'];
+    // hash pass with sha256
     $password = hash('sha256', $_POST['password']);
-    $sql = "select * from Students where utorid = '$UTORid' and pass = '$password'";
-    $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $count = mysqli_num_rows($result);
-    if ($count == 1) {
-      foreach($student_entries as $entry) {
-        $_SESSION[$entry] = $row[$entry];
+    // check login type
+    if ($_POST['radios'] == 'student') {
+      // generate query for students
+      $sql = "select * from Students where utorid = '$UTORid' and pass = '$password'";
+      // get result from sql query on db
+      $result = mysqli_query($db, $sql);
+      // get row from result
+      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+      // get number of rows from result
+      $count = mysqli_num_rows($result);
+      // check if only 1 entry matched
+      if ($count == 1) {
+        // get all the mark entries and save in session
+        foreach($student_entries as $entry) {
+          $_SESSION[$entry] = $row[$entry];
+        }
+        // generate md5 token and save in session
+        $token = generateToken();
+        $_SESSION['token'] = $token;
+        // create query to update user with token
+        $sql_update_token = "update Students set authToken = '$token' where utorid = '$UTORid'";
+        mysqli_query($db, $sql_update_token);
+        // set account type
+        $_SESSION['account'] = $_POST['radios'];
+        // finally redirect to dashboard
+        header('Location:../../dashboard/', false);
+      } else {
+        alert("Wrong login");
       }
-      $_SESSION['token'] = generateToken();
-      header('Location:../../dashboard/', false);
-    } else {
-      alert("Wrong login");
+    } else if ($_POST['radios'] == 'instructor') {
+      // generate query for students
+      $sql = "select * from Instructors where utorid = '$UTORid' and pass = '$password'";
+      // get result from sql query on db
+      $result = mysqli_query($db, $sql);
+      // get row from result
+      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+      // get number of rows from result
+      $count = mysqli_num_rows($result);
+      // check if only 1 entry matched
+      if ($count == 1) {
+        // get all the entries and save in session
+        foreach($student_entries as $entry) {
+          $_SESSION[$entry] = $row[$entry];
+        }
+        // generate md5 token and save in session
+        $token = generateToken();
+        $_SESSION['token'] = $token;
+        // create query to update user with token
+        $sql_update_token = "update Instructors set authToken = '$token' where utorid = '$UTORid'";
+        mysqli_query($db, $sql_update_token);
+        // set account type
+        $_SESSION['account'] = $_POST['radios'];
+        // finally redirect to dashboard
+        header('Location:../../dashboard/', false);
+      } else {
+        alert("Wrong login");
+      }
     }
   }
 

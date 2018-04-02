@@ -30,7 +30,7 @@
         </div>
         <a href="./dashboard">
           <div class="nav-item">
-            <h2><i class="feather icon-layers"></i>dashboard</h2>
+            <h2><i class="feather icon-monitor"></i>dashboard</h2>
           </div>
         </a>
         <a href="./files/syllabus.pdf" target="_">

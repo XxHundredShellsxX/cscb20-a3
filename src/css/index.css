@@ -385,6 +385,22 @@ footer i {
   justify-content: space-between;
 }
 
+.mark {
+  display: flex;
+  flex-direction: row;
+}
+
+.mark h3 {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.mark input {
+  width: 100px;
+  height: 25px;
+  margin-right: 20px;
+}
+
 @media (max-width: 720px) {
   #container {
     flex-direction: column;
