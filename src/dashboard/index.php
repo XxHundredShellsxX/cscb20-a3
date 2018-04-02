@@ -48,7 +48,7 @@
       <div class="overview">
         <div class="card">
           <h2>mark</h2>
-          <h3>92%</h3>
+          <h3>00%</h3>
         </div>
         <div class="card">
           <h2>upcoming</h2>
