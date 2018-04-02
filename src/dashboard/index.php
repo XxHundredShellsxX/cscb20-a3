@@ -6,12 +6,14 @@
   }
   $mark =  calculate_mark();
   function calculate_mark() {
+    global $db;
+    global $mark_entries;
     $sql = "select * from CourseDetails where courseCode='CSCB20'";
     $result = mysqli_query($db, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $mark = 0;
     foreach($mark_entries as $entry) {
-      $mark += $_SESSION[$entry] * $row[$entry];
+      $mark += $_SESSION[$entry] * $row[$entry] * .01;
     }
     return $mark;
   }
