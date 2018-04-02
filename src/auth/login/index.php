@@ -10,10 +10,13 @@
     // UTORid and password sent from form
     $UTORid = $_POST['UTORid'];
     $password = $_POST['password'];
-    $result = mysqli_query($db, "CREATE TABLE students");
-    if ($UTORid == "test" && $password == "test") {
-      $_SESSION['UTORid'] = $UTORid;
-      $_SESSION['name'] = "Rikin Katyal";
+    $sql = "SELECT * FROM Students WHERE student_name = '$UTORid'";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
+    if (count == 1) {
+      $_SESSION['UTORid'] = $result["utorid"];
+      $_SESSION['name'] = $result["student_name"];
       $_SESSION['token']    = generateToken();
       header('Location:../../dashboard/', false);
     } else {
