@@ -10,7 +10,7 @@
     // UTORid and password sent from form
     $UTORid = $_POST['UTORid'];
     $password = $_POST['password'];
-    $sql = "SELECT * FROM Students WHERE student_name = '$UTORid'";
+    $sql = "SELECT * FROM Students WHERE utorid = '$UTORid'";
     $result = mysqli_query($db,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
