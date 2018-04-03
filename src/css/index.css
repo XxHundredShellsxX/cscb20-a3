@@ -342,8 +342,16 @@ nav h2 {
   display: block !important;
 }
 
-#content .card {
+#dashboard a {
   width: 31%;
+}
+
+#dashboard a:hover {
+  text-decoration: none;
+}
+
+#content .card {
+  width: 100%;
   margin-right: 10px;
   flex-direction: column;
   text-align: center;

@@ -17,7 +17,7 @@ a2 float,
 a3 float,
 final float,
 midterm float,
-authToken varchar(255),
+authToken varchar(255)
 );
 
 create table cscb20.Instructors

@@ -17,6 +17,20 @@
     }
     return $mark;
   }
+  $class_avg = calculate_class_avg();
+  function calculate_class_avg() {
+    global $db;
+    return "80";
+  }
+  $join_requests = count_join_requests();
+  function count_join_requests() {
+    global $db;
+    $sql = "select * from Students where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
+    $result = mysqli_query($db, $sql);
+    // get number of rows from result
+    $count = mysqli_num_rows($result);
+    return $count;
+  }
 ?>
 <html lang="en">
 <head>
@@ -63,25 +77,58 @@
     <div id="content">
       <h1>welcome back, <?php echo $_SESSION['firstName'] ?></h1>
       <h2>your overview</h2>
-      <div class="overview">
-        <div class="card">
-          <?php
-            if ($_SESSION['account'] == 'student') {
-              echo "<h2>your mark</h2>";
-              echo "<h3>$mark%</h3>";
-            } else {
-              echo "class average";
-            }
-          ?>
-        </div>
-        <div class="card">
-          <h2>upcoming</h2>
-          <h3>final exam</h3>
-        </div>
-        <div class="card">
-          <h2>tutorial section</h2>
-          <h3>tut 1</h3>
-        </div>
+      <div class="overview" id="dashboard">
+        <?php
+          if ($_SESSION['account'] == 'student') {
+            echo "<a href='./marks/'>
+            <div class='card'>
+            <h2>your mark</h2>
+            <h3>$mark</h3>
+            </div>
+            </a>";
+          } else {
+            echo "<a href='./instructor/marks/'>
+            <div class='card'>
+            <h2>class average</h2>
+            <h3>$class_avg%</h3>
+            </div>
+            </a>";
+          }
+        ?>
+        <?php
+          if ($_SESSION['account'] == 'student') {
+            echo "<a href='../../calendar/'>
+            <div class='card'>
+            <h2>upcoming</h2>
+            <h3>$mark</h3>
+            </div>
+            </a>";
+          } else {
+            echo "<a href='./instructor/requests/'>
+            <div class='card'>
+            <h2>join requests</h2>
+            <h3>$join_requests</h3>
+            </div>
+            </a>";
+          }
+        ?>
+        <?php
+          if ($_SESSION['account'] == 'student') {
+            echo "<a href='./marks/'>
+            <div class='card'>
+            <h2>your mark</h2>
+            <h3>$mark</h3>
+            </div>
+            </a>";
+          } else {
+            echo "<a href='./instructor/marks/'>
+            <div class='card'>
+            <h2>class average</h2>
+            <h3>$mark</h3>
+            </div>
+            </a>";
+          }
+        ?>
       </div>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
