@@ -6,11 +6,9 @@
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['approval'])) {
-      foreach ($_POST['approval'] as $approval) {
-        $sql_update_token = "update Students set verified = 1 where utorid = '$approval'";
-        mysqli_query($db, $sql_update_token);
-      }
+    foreach ($_POST['approval'] as $approval) {
+      $sql_update_token = "update Students set verified = 1 where utorid = '$approval'";
+      mysqli_query($db, $sql_update_token);
     }
   }
 ?>

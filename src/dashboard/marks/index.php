@@ -72,7 +72,74 @@
           <h2>tutorial section</h2>
           <h3>tut 1</h3>
         </div>
+
       </div>
+      <div class="student-assessments">
+          <div class="whole c">
+            <h3>Name</h3>
+          </div>
+          <div class="whole a">
+            <h3>Practical</h3>
+          </div>
+          <div class="whole b">
+            <h3>Quiz 1</h3>
+          </div>
+          <div class="whole a">
+            <h3>Quiz 2</h3>
+          </div>
+          <div class="whole b">
+            <h3>Quiz 3</h3>
+          </div>
+          <div class="whole a">
+            <h3>Assignment 1</h3>
+          </div>
+          <div class="whole b">
+            <h3>Assignment 2</h3>
+          </div>
+          <div class="whole a">
+            <h3>Assignment 3</h3>
+          </div>
+          <div class="whole b">
+            <h3>Midterm</h3>
+          </div>
+          <div class="whole a">
+            <h3>Final</h3>
+          </div>
+      </div>
+      <div class="student-marks">
+          <div class="whole c">
+            <h3>Grade</h3>
+          </div>
+          <div class="whole a">
+            <h3><?php echo $_SESSION['practical'] ?></h3>
+          </div>
+          <div class="whole b">
+          <h3><?php echo $_SESSION['quiz1'] ?></h3>
+          </div>
+          <div class="whole a">
+          <h3><?php echo $_SESSION['quiz2'] ?></h3>
+          </div>
+          <div class="whole b">
+          <h3><?php echo $_SESSION['quiz3'] ?></h3>
+          </div>
+          <div class="whole a">
+          <h3><?php echo $_SESSION['a1'] ?></h3>
+          </div>
+          <div class="whole b">
+          <h3><?php echo $_SESSION['a2'] ?></h3>
+          </div>
+          <div class="whole a">
+          <h3><?php echo $_SESSION['a3'] ?></h3>
+          </div>
+          <div class="whole b">
+          <h3><?php echo $_SESSION['midterm'] ?></h3>
+          </div>
+          <div class="whole a">
+          <h3><?php echo $_SESSION['final'] ?></h3>
+          </div>
+      </div>
+
+      
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>

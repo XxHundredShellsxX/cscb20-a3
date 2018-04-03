@@ -440,3 +440,69 @@ footer i {
   background: #222;
   color: white;
 }
+
+.student-marks{
+  display:block;
+  width:30%;
+  float:left;
+  border:2px;
+  border-radius: 12px;
+}
+
+.student-assessments{
+  display:block;
+  width:70%;
+  float:left;
+  border:2px;
+  border-radius: 12px;
+}
+
+.row{
+    height: 60px;  
+}
+
+.whole{
+    height:40px;
+}
+
+.half{
+    height:20px;   
+}
+
+.a{
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  margin: 10px 0;
+
+  align-items: center;
+}
+
+.b{
+  background-color:#f0f0f0;
+  border-radius: 5px;
+  margin: 10px 0;
+
+  align-items: center;
+}
+
+.c{
+  background-color:#f0f0f0;
+  border-radius: 5px;
+  margin: 10px 0;
+  text-decoration: underline;
+  align-items: center;
+}
+
+
+
+#content .student-marks h3 {
+  font-size: 25px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+#content .student-assessments h3 {
+  font-size: 25px;
+  margin: 10px 0;
+  text-align: center;
+}
