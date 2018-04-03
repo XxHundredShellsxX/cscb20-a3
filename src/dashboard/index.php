@@ -31,6 +31,15 @@
     $count = mysqli_num_rows($result);
     return $count;
   }
+  $class_size = count_class_size();
+  function count_class_size() {
+    global $db;
+    $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
+    $result = mysqli_query($db, $sql);
+    // get number of rows from result
+    $count = mysqli_num_rows($result);
+    return $count;
+  }
 ?>
 <html lang="en">
 <head>
@@ -123,8 +132,8 @@
           } else {
             echo "<a href='./instructor/marks/'>
             <div class='card'>
-            <h2>class average</h2>
-            <h3>$mark</h3>
+            <h2>class size</h2>
+            <h3>$class_size</h3>
             </div>
             </a>";
           }
