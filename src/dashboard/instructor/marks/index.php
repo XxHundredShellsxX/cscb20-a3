@@ -4,6 +4,12 @@
   if (!isset($_SESSION['token'])){
     header("Location:../../../../auth/login");
   }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    foreach ($_POST['approval'] as $approval) {
+      $sql_update_token = "update Students set verified = 1 where utorid = '$approval'";
+      mysqli_query($db, $sql_update_token);
+    }
+  }
 ?>
 <html lang="en">
 <head>
@@ -69,7 +75,7 @@
           $result = mysqli_query($db, $sql);
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "
-            <div class='mark'>
+            <div class='mark entry' id=".$row['utorid'].">
               <h3>".$row['utorid']."</h3>
               <h3>".$row['firstName']." ".$row['lastName']."</h3>
               <input type='number' min='0' max='100' value='".$row['quiz1']."'/>
