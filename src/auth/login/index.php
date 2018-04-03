@@ -23,20 +23,25 @@
       $count = mysqli_num_rows($result);
       // check if only 1 entry matched
       if ($count == 1) {
-        // get all the mark entries and save in session
-        foreach($student_entries as $entry) {
-          $_SESSION[$entry] = $row[$entry];
+        // check if instructor verified
+        if (!$row['verified']) {
+          alert("Your account has not been setup by the instructor yet.");
+        } else {
+          // get all the mark entries and save in session
+          foreach($student_entries as $entry) {
+            $_SESSION[$entry] = $row[$entry];
+          }
+          // generate md5 token and save in session
+          $token = generateToken();
+          $_SESSION['token'] = $token;
+          // create query to update user with token
+          $sql_update_token = "update Students set authToken = '$token' where utorid = '$UTORid'";
+          mysqli_query($db, $sql_update_token);
+          // set account type
+          $_SESSION['account'] = $_POST['radios'];
+          // finally redirect to dashboard
+          header('Location:../../dashboard/', false);
         }
-        // generate md5 token and save in session
-        $token = generateToken();
-        $_SESSION['token'] = $token;
-        // create query to update user with token
-        $sql_update_token = "update Students set authToken = '$token' where utorid = '$UTORid'";
-        mysqli_query($db, $sql_update_token);
-        // set account type
-        $_SESSION['account'] = $_POST['radios'];
-        // finally redirect to dashboard
-        header('Location:../../dashboard/', false);
       } else {
         alert("Wrong login");
       }
