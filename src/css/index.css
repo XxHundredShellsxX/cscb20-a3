@@ -396,6 +396,9 @@ footer i {
 .mark {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .mark h3 {
@@ -407,6 +410,10 @@ footer i {
   width: 100px;
   height: 25px;
   margin-right: 20px;
+}
+
+.instructor-marks input {
+  text-align: center;
 }
 
 @media (max-width: 720px) {

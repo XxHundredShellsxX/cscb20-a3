@@ -1,21 +1,8 @@
 <?php
-  include("../../../../auth/config.php");
+  include("../../../auth/config.php");
   session_start();
   if (!isset($_SESSION['token'])){
     header("Location:../../../../auth/login");
-  }
-  $mark = calculate_mark();
-  function calculate_mark() {
-    global $db;
-    global $mark_entries;
-    $sql = "select * from CourseDetails where courseCode='CSCB20'";
-    $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $mark = 0;
-    foreach($mark_entries as $entry) {
-      $mark += $_SESSION[$entry] * $row[$entry] * .01;
-    }
-    return $mark;
   }
 ?>
 <html lang="en">
@@ -63,32 +50,43 @@
     <div id="content">
       <h1>class marks</h1>
       <h2>class average: <?php echo $mark?>%</h2>
-      <div class="mark">
-        <h3>UTORid</h3>
-        <h3>Name</h3>
-        <h3>Q1</h3>
-        <h3>Q2</h3>
-        <h3>Q3</h3>
-        <h3>A1</h3>
-        <h3>A2</h3>
-        <h3>A3</h3>
-        <h3>Practical</h3>
-        <h3>Midterm</h3>
-        <h3>Final</h3>
-      </div>
-      <div class="mark">
-        <h3>katyalri</h3>
-        <h3>Rikin Katyal</h3>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-        <input type="number" min="0" max="100"/>
-      </div>
+      <form action="" method="post" class="instructor-marks">
+        <div class="mark">
+          <h3>UTORid</h3>
+          <h3>Name</h3>
+          <h3>quiz 1</h3>
+          <h3>quiz 2</h3>
+          <h3>quiz 3</h3>
+          <h3>A1</h3>
+          <h3>A2</h3>
+          <h3>A3</h3>
+          <h3>Practical</h3>
+          <h3>Midterm</h3>
+          <h3>Final</h3>
+        </div>
+        <?php
+          $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
+          $result = mysqli_query($db, $sql);
+          while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            echo "
+            <div class='mark'>
+              <h3>".$row['utorid']."</h3>
+              <h3>".$row['firstName']." ".$row['lastName']."</h3>
+              <input type='number' min='0' max='100' value='".$row['quiz1']."'/>
+              <input type='number' min='0' max='100' value='".$row['quiz2']."'/>
+              <input type='number' min='0' max='100' value='".$row['quiz3']."'/>
+              <input type='number' min='0' max='100' value='".$row['a1']."'/>
+              <input type='number' min='0' max='100' value='".$row['a2']."'/>
+              <input type='number' min='0' max='100' value='".$row['a3']."'/>
+              <input type='number' min='0' max='100' value='".$row['practical']."'/>
+              <input type='number' min='0' max='100' value='".$row['midterm']."'/>
+              <input type='number' min='0' max='100' value='".$row['final']."'/>
+            </div>
+            ";
+          }
+        ?>
+        <button>Save Changes</button>
+      </form>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>
