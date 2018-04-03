@@ -119,7 +119,7 @@
         <input type="password" name="password" placeholder="password" required>
         <button>login</button>
       </form>
-      <a href="../signup/">i don't have an account. signup.</a>
+      <a href="../register/">i don't have an account. signup.</a>
     </div>
   </body>
 </html>
