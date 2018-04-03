@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+  include("../auth/config.php");
+  session_start();
+  if (!isset($_SESSION['token'])){
+    header("Location:../auth/login");
+  }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../css/feather.css">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
 
-    <title>Labs | CSCB20</title>
+    <title>Calender | CSCB20</title>
 </head>
 <body>
 <div id="container">
@@ -24,6 +30,11 @@
                     <h2><i class="feather icon-home"></i>home</h2>
                 </div>
             </a>
+            <a href="../dashboard/index.php">
+                <div class="nav-item">
+                    <h2><i class="feather icon-monitor"></i>dashboard</h2>
+                </div>
+            </a>
             <a href="../files/syllabus.pdf" target="_">
                 <div class="nav-item">
                     <h2><i class="feather icon-file-text"></i>syllabus</h2>
@@ -35,15 +46,17 @@
                 </div>
             </a>
             <a href="../lectures/index.php">
-                <div class="nav-item">
-                    <h2><i class="feather icon-folder"></i>lecture notes</h2>
-                </div>
+              <div class="nav-item">
+                <h2><i class="feather icon-folder"></i>lecture notes</h2>
+              </div>
             </a>
-                <div class="nav-item active">
+            <a href="../labs/index.php">
+                <div class="nav-item">
                     <h2><i class="feather icon-clipboard"></i>labs</h2>
                 </div>
+            </a>
             <a href="../calendar/index.php">
-                <div class="nav-item">
+                <div class="nav-item active">
                     <h2><i class="feather icon-calendar"></i>calendar</h2>
                 </div>
             </a>
@@ -75,33 +88,8 @@
         </nav>
     </div>
     <div id="content">
-        <h1>lab content</h1>
-        <h2>Overview</h2>
-        <p>Here are the lab handouts as well as useful problem sets.</p>
-        <h2>Lab Handouts</h2>
-        <p>These will prepare you for class each week</p>
-        <a href="../files/lecture slides" target="_"><h3>Week 1</h3></a>
-        <p> desc of lab note</p>
-        <a href="../files/lecture slides" target="_"><h3>Week 2</h3></a>
-        <p> desc of lab note</p>
-        <a href="../files/lecture slides" target="_"><h3>Week 3</h3></a>
-        <p> desc of lab note</p>
-        <a href="../files/lecture slides" target="_"><h3>Week 4</h3></a>
-        <p> desc of lab note</p>
-        <a href="../files/lecture slides" target="_"><h3>Week 5</h3></a>
-        <p> desc of lab note</p>
-        <a href="../files/lecture slides" target="_"><h3>Week 6</h3></a>
-        <p> desc of lec slide</p>
-        <a href="../files/lecture slides" target="_"><h3>Week 7</h3></a>
-        <p> desc of lec slide</p>
-        <h2>In Class Problem Sets</h2>
-        <p>This material will greatly help you for your quizzes and exams. Most of them will be take up either during lecture or tutorial </p>
-        <a href="../files/work1.pdf" target="_"><h3>WorkSheet 1</h3></a>
-        <p> desc of lab note</p>
-        <a href="../files/work2.pdf" target="_"><h3>WorkSheet 2</h3></a>
-        <p> desc of lab note</p>
-        <a href="../files/work3.pdf" target="_"><h3>WorkSheet 3</h3></a>
-        <p> desc of lab note</p>
+        <h1>calendar</h1>
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m80s19qupdhegtp0t8buagvfpc%40group.calendar.google.com&amp;color=%235F6B02&amp;ctz=America%2FToronto" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
         <footer>
             <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
             <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>

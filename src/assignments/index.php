@@ -1,16 +1,22 @@
-<!DOCTYPE html>
+<?php
+  include("../auth/config.php");
+  session_start();
+  if (!isset($_SESSION['token'])){
+    header("Location:../auth/login");
+  }
+?>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <script src="../js/index.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="../css/feather.css">
-  <link rel="stylesheet" type="text/css" href="../css/index.css">
-
-  <title>Feedback | CSCB20</title>
+    <script src="../js/index.js"></script>
+  
+    <link rel="stylesheet" type="text/css" href="../css/feather.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+  
+    <title>Assignments | CSCB20</title>
 </head>
 <body>
   <div id="container">
@@ -24,16 +30,19 @@
                 <h2><i class="feather icon-home"></i>home</h2>
               </div>
             </a>
+            <a href="../dashboard/index.php">
+                <div class="nav-item">
+                    <h2><i class="feather icon-monitor"></i>dashboard</h2>
+                </div>
+            </a>
             <a href="../files/syllabus.pdf" target="_">
               <div class="nav-item">
                 <h2><i class="feather icon-file-text"></i>syllabus</h2>
               </div>
             </a>
-            <a href="../assignments/index.php">
-              <div class="nav-item">
+              <div class="nav-item active">
                 <h2><i class="feather icon-edit"></i>assignments</h2>
               </div>
-            </a>
             <a href="../lectures/index.php">
               <div class="nav-item">
                 <h2><i class="feather icon-folder"></i>lecture notes</h2>
@@ -69,14 +78,26 @@
                 <h2><i class="feather icon-download-cloud"></i>course software</h2>
               </div>
             </a>
-              <div class="nav-item active">
+            <a href="../feedback/index.php">
+              <div class="nav-item">
                 <h2><i class="feather icon-message-square"></i>feedback</h2>
               </div>
+            </a>
           </nav>
         </div>
     <div id="content">
-      <h1>feedback</h1>
-      <div class="typeform-widget" data-url="https://rikinkatyal.typeform.com/to/VAWBSs" style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+      <h1>assignments</h1>
+      <h2>Overview</h2>
+      <p>Here are the assignment and exercise topics, weights, and due dates. I will be posting the exercise and assignment handouts here. All exercises and assignments will be submitted on <i>MarkUs</i>. You can find a link to it in the <i>course links</i> section.</p>
+      <a href="../files/a1.pdf" target="_"><h2>Assignment 1</h2></a>
+      <p>desc of the assignment goes here</p>
+      <p><b>Due Date:</b> February 9th, 2018 @ 11:59 PM</p>
+      <a href="../files/a2.pdf" target="_"><h2>Assignment 2</h2></a>
+      <p>desc of the assignment goes here</p>
+      <p><b>Due Date:</b> March 9th, 2018 @ 11:59 PM</p>
+      <h2>Assignment 3</h2>
+      <p>Coming soon</p>
+      <p><b>Due Date:</b> <i>TBA</i></p>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>

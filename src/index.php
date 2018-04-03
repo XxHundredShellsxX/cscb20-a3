@@ -53,7 +53,7 @@
             <h2><i class="feather icon-clipboard"></i>labs</h2>
           </div>
         </a>
-        <a href="./calendar/index.phpindex.php">
+        <a href="./calendar/index.php">
           <div class="nav-item">
             <h2><i class="feather icon-calendar"></i>calendar</h2>
           </div>

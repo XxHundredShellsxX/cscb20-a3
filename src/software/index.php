@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+  include("../auth/config.php");
+  session_start();
+  if (!isset($_SESSION['token'])){
+    header("Location:../auth/login");
+  }
+?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -23,6 +29,11 @@
               <div class="nav-item">
                 <h2><i class="feather icon-home"></i>home</h2>
               </div>
+            </a>
+            <a href="../dashboard/index.php">
+                <div class="nav-item">
+                    <h2><i class="feather icon-monitor"></i>dashboard</h2>
+                </div>
             </a>
             <a href="../files/syllabus.pdf" target="_">
               <div class="nav-item">
