@@ -6,7 +6,12 @@
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo 'yo';
+    if (isset($_POST['approval'])) {
+      foreach ($_POST['approval'] as $approval) {
+        $sql_update_token = "update Students set verified = 1 where utorid = '$approval'";
+        mysqli_query($db, $sql_update_token);
+      }
+    }
   }
 ?>
 <html lang="en">
@@ -53,27 +58,27 @@
         </div>
     <div id="content">
       <h1>join requests</h1>
-      <div class="mark">
-        <h3>UTORid</h3>
-        <h3>First Name</h3>
-        <h3>Last Name</h3>
-        <h3>Approve</h3>
-      </div>
-      <?php
-        $sql = "select * from Students where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
-        $result = mysqli_query($db, $sql);
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-          echo "
-          <div class='mark'>
-            <h3>".$row['utorid']."</h3>
-            <h3>".$row['firstName']."</h3>
-            <h3>".$row['lastName']."</h3>
-            <input id='".$row['utorid']."' type='checkbox'>
-          </div>
-          ";
-        }
-      ?>
       <form action="" method="post">
+        <div class="mark">
+          <h3>UTORid</h3>
+          <h3>First Name</h3>
+          <h3>Last Name</h3>
+          <h3>Approve</h3>
+        </div>
+        <?php
+          $sql = "select * from Students where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
+          $result = mysqli_query($db, $sql);
+          while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            echo "
+            <div class='mark'>
+              <h3>".$row['utorid']."</h3>
+              <h3>".$row['firstName']."</h3>
+              <h3>".$row['lastName']."</h3>
+              <input type='checkbox' name='approval[]' value='".$row['utorid']."'>
+            </div>
+            ";
+          }
+        ?>
         <button>Save Changes</button>
       </form>
       <footer>
