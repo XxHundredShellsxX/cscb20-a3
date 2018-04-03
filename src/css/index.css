@@ -436,12 +436,7 @@ footer i {
   }
 }
 
-*::selection {
-  background: #222;
-  color: white;
-}
-
-.student-marks{
+.student-marks {
   display:block;
   width:30%;
   float:left;
@@ -449,7 +444,7 @@ footer i {
   border-radius: 12px;
 }
 
-.student-assessments{
+.student-assessments {
   display:block;
   width:70%;
   float:left;
@@ -493,16 +488,21 @@ footer i {
   align-items: center;
 }
 
-
+*::selection {
+  background: #222;
+  color: white;
+}
 
 #content .student-marks h3 {
   font-size: 25px;
   margin: 10px 0;
   text-align: center;
+  line-height: 40px;
 }
 
 #content .student-assessments h3 {
   font-size: 25px;
   margin: 10px 0;
   text-align: center;
+  line-height: 40px;
 }

@@ -111,31 +111,31 @@
             <h3>Grade</h3>
           </div>
           <div class="whole a">
-            <h3><?php echo $_SESSION['practical'] ?></h3>
+            <h3><?php echo $_SESSION['practical'] ?>%</h3>
           </div>
           <div class="whole b">
-          <h3><?php echo $_SESSION['quiz1'] ?></h3>
+          <h3><?php echo $_SESSION['quiz1'] ?>%</h3>
           </div>
           <div class="whole a">
-          <h3><?php echo $_SESSION['quiz2'] ?></h3>
+          <h3><?php echo $_SESSION['quiz2'] ?>%</h3>
           </div>
           <div class="whole b">
-          <h3><?php echo $_SESSION['quiz3'] ?></h3>
+          <h3><?php echo $_SESSION['quiz3'] ?>%</h3>
           </div>
           <div class="whole a">
-          <h3><?php echo $_SESSION['a1'] ?></h3>
+          <h3><?php echo $_SESSION['a1'] ?>%</h3>
           </div>
           <div class="whole b">
-          <h3><?php echo $_SESSION['a2'] ?></h3>
+          <h3><?php echo $_SESSION['a2'] ?>%</h3>
           </div>
           <div class="whole a">
-          <h3><?php echo $_SESSION['a3'] ?></h3>
+          <h3><?php echo $_SESSION['a3'] ?>%</h3>
           </div>
           <div class="whole b">
-          <h3><?php echo $_SESSION['midterm'] ?></h3>
+          <h3><?php echo $_SESSION['midterm'] ?>%</h3>
           </div>
           <div class="whole a">
-          <h3><?php echo $_SESSION['final'] ?></h3>
+          <h3><?php echo $_SESSION['final'] ?>%</h3>
           </div>
       </div>
 
