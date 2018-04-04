@@ -20,7 +20,29 @@
   $class_avg = calculate_class_avg();
   function calculate_class_avg() {
     global $db;
-    return "80";
+    global $mark_entries;
+    $sql = "select * from CourseDetails where courseCode='CSCB20'";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $average = 0;
+    // find total of every assessment
+    foreach($mark_entries as $entry) {
+      $average += assessment_avg($entry) * $row[$entry] * .01;
+    }
+    return round($average, 2);
+  }
+  function assessment_avg($assessment){
+    global $db;
+    $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
+    $result = mysqli_query($db, $sql);
+    $total = 0;
+    $count = 0;
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $total += $row[$assessment];
+        $count += 1;
+        
+    }
+    return $total / $count;
   }
   $join_requests = count_join_requests();
   function count_join_requests() {
