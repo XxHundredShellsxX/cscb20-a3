@@ -17,6 +17,33 @@
     }
     return $mark;
   }
+  $class_avg = calculate_class_avg();
+  function calculate_class_avg() {
+    global $db;
+    global $mark_entries;
+    $sql = "select * from CourseDetails where courseCode='CSCB20'";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $average = 0;
+    // find total of every assessment
+    foreach($mark_entries as $entry) {
+      $average += assessment_avg($entry) * $row[$entry] * .01;
+    }
+    return round($average, 2);
+  }
+  function assessment_avg($assessment){
+    global $db;
+    $sql = "select * from Students";
+    $result = mysqli_query($db, $sql);
+    $total = 0;
+    $count = 0;
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $total += $row[$assessment];
+        $count += 1;
+        
+    }
+    return $total / $count;
+  }
 ?>
 <html lang="en">
 <head>
@@ -66,16 +93,14 @@
           </nav>
         </div>
     <div id="content">
-      <h1>your marks</h1>
-      <h2>current mark: <?php echo $mark?>%</h2>
       <div class="overview">
         <div class="card">
-          <h2>upcoming</h2>
-          <h3>final exam</h3>
+          <h2>Overall Average</h2>
+          <h3><?php echo $mark?>%</h3>
         </div>
         <div class="card">
-          <h2>tutorial section</h2>
-          <h3>tut 1</h3>
+          <h2>Overall Class Average</h2>
+          <h3><?php echo $class_avg?>%</h3>
         </div>
 
       </div>
@@ -144,6 +169,23 @@
           </div>
       </div>
 
+      <div class="student-marks">
+          <div class="whole c">
+            <h3>Class Average</h3>
+          </div>
+          <?php
+          $count = 0;
+          foreach($mark_entries as $entry) {
+            $count += 1;
+            $colour = ($count % 2 == 0)? 'b' : 'a';
+            echo "
+            <div class='whole ".$colour."'>
+              <h3>".round(assessment_avg($entry), 2)."%</h3>
+            </div>
+            ";
+          }
+          ?>
+      </div>
       
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>

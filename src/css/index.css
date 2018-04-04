@@ -447,7 +447,7 @@ footer i {
 
 .student-marks {
   display:block;
-  width:30%;
+  width:25%;
   float:left;
   border:2px;
   border-radius: 12px;
@@ -455,7 +455,7 @@ footer i {
 
 .student-assessments {
   display:block;
-  width:70%;
+  width:50%;
   float:left;
   border:2px;
   border-radius: 12px;
