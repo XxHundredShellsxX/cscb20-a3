@@ -13,6 +13,9 @@
       alert("An unexpected error occured. Please try again.");
     }
   }
+  function nl2p($text) {
+    return '<p>'.str_replace(array("\r\n", "\r", "\n"), '</p><p>', $text).'</p>';
+  }
 ?>
 <html lang="en">
 <head>
@@ -72,7 +75,7 @@
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "<div class='feedback card'>
             <h2>Submitted at ".$row['submittedAt']."</h2>
-            <p>".$row['body']."</p>
+            ".nl2p($row['body'])."
             </div>";
           }
           echo '</div>';
@@ -80,7 +83,7 @@
           echo "<h1>submit feedback</h1>
           <h2>this feedback is submitted completely anonymously.</h2>
           <form action='' method='post'>
-            <div class='card'>
+            <div class='card feedback-view'>
               <h2>feedback</h2>
               <select name='instructors'>";
           $sql = "select * from Instructors";

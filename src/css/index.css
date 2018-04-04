@@ -525,6 +525,10 @@ footer i {
   flex-direction: column-reverse;
 }
 
+.feedback p {
+  margin: 4px;
+}
+
 @media (max-width: 720px) {
   #container {
     flex-direction: column;
