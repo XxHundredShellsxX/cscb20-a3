@@ -78,6 +78,8 @@
 
   if ($_GET['ref'] == "logout") {
     alert("Successfully logged out");
+  } else if ($_GET['ref'] == "signup") {
+    alert("An instructor must approve your account before you can login.");
   }
 
   function generateToken() {
