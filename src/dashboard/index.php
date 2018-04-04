@@ -33,7 +33,7 @@
   }
   function assessment_avg($assessment){
     global $db;
-    $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
+    $sql = "select * from Students where verified = 1 and instructorId = '".$_SESSION['utorid']."'";
     $result = mysqli_query($db, $sql);
     $total = 0;
     $count = 0;
