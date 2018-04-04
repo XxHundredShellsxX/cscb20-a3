@@ -119,7 +119,7 @@
             echo "<a href='./marks/'>
             <div class='card'>
             <h2>your mark</h2>
-            <h3>$mark</h3>
+            <h3>$mark%</h3>
             </div>
             </a>";
           } else {

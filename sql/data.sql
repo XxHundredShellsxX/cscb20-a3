@@ -39,13 +39,13 @@ a1 float not null,
 a2 float not null,
 a3 float not null,
 midterm float not null,
-final float not null
+final float not null	
 );
 
 create table cscb20.Feedback(
 body text,
 submittedAt varchar(255),
-account varchar(25)
+instructorId varchar(25)
 );
 
 insert into cscb20.Students
@@ -62,4 +62,3 @@ values('attarwa', 'CE7ACD1446EEB8B9649FF0C770EB264098097C33AA1CC67D84DA157749086
 
 insert into cscb20.Coursedetails
 values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40)
-

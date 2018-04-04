@@ -95,7 +95,7 @@
     <div id="content">
       <div class="overview">
         <div class="card">
-          <h2>Overall Average</h2>
+          <h2>My Average</h2>
           <h3><?php echo sprintf('%0.2f',$mark)?>%</h3>
         </div>
         <div class="card">

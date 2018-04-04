@@ -122,6 +122,10 @@ input[type="text"]:focus, input[type="password"]:focus {
   border-color: #43cfe8;
 }
 
+select {
+  margin: 10px 0;
+}
+
 .radio-toolbar {
   margin-bottom: 15px;
 }
