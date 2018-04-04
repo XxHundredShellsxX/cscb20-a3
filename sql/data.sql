@@ -44,7 +44,8 @@ final float not null
 
 create table cscb20.Feedback(
 body text,
-submittedAt varchar(255)
+submittedAt varchar(255),
+account varchar(25)
 );
 
 insert into cscb20.Students

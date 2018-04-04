@@ -511,6 +511,11 @@ footer i {
   line-height: 40px;
 }
 
+.feedbacks {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 @media (max-width: 720px) {
   #container {
     flex-direction: column;

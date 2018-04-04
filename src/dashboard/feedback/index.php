@@ -5,7 +5,8 @@
     header("Location:../../auth/login");
   }
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $sql = "insert into Feedback values (\"".$_POST['feedback']."\", '".date("Y-m-d H:i:s")."')";
+    date_default_timezone_set('EST');
+    $sql = "insert into Feedback values (\"".$_POST['feedback']."\", '".date("Y-m-d H:i:s")."','".$_SESSION['account']."')";
     if (mysqli_query($db, $sql)) {
       alert("Feedback successfully sent");
     } else {
@@ -65,15 +66,32 @@
           </nav>
         </div>
     <div id="content">
-      <h1>submit feedback</h1>
-      <h2>this feedback is submitted completely anonymously.</h2>
-      <form action="" method="post">
-        <div class="card">
-          <h2>feedback</h2>
-          <textarea maxlength="2000" name="feedback"></textarea>
-          <button>Submit</button>
-        </div>
-      </form>
+      <?php
+        if ($_SESSION['account'] == 'instructor') {
+          echo "<h1>view feedback</h1>
+          <h2>this is the feedback submitted completely anonymously.</h2>
+          <div class='feedbacks'>";
+          $sql = "select * from Feedback";
+          $result = mysqli_query($db, $sql);
+          while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            echo "<div class='feedback card'>
+            <h2>Submitted at ".$row['submittedAt']." by a ".$row['account']."</h2>
+            <p>".$row['body']."</p>
+            </div>";
+          }
+          echo '</div>';
+        } else {
+          echo "<h1>submit feedback</h1>
+          <h2>this feedback is submitted completely anonymously.</h2>
+          <form action='' method='post'>
+            <div class='card'>
+              <h2>feedback</h2>
+              <textarea maxlength='2000' name='feedback' required></textarea>
+              <button>Submit</button>
+            </div>
+          </form>";
+        }
+      ?>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>
