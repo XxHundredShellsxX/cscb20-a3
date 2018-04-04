@@ -4,10 +4,23 @@
   if (!isset($_SESSION['token'])){
     header("Location:../../../../auth/login");
   }
+  $student_ids = array();
+  $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
+  $result = mysqli_query($db, $sql);
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      $student_ids[] = $row['utorid'];
+  }
+  $num_of_students = count($student_ids);
+  $num_of_marks = count($mark_entries);
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    foreach ($_POST['approval'] as $approval) {
-      $sql_update_token = "update Students set verified = 1 where utorid = '$approval'";
-      mysqli_query($db, $sql_update_token);
+    for($student_index = 0; $student_index < $num_of_students; $student_index++) {
+      for($mark_index = 0; $mark_index < $num_of_marks; $mark_index++) {
+        $curr_student = $student_ids[$student_index];
+        $assessment = $mark_entries[$mark_index];
+        $new_mark = $_POST['marks'][($student_index * ($num_of_marks)) + $mark_index];
+        $sql_update_token = "update Students set $assessment = $new_mark where utorid = '$curr_student'";
+        mysqli_query($db, $sql_update_token);
+      }
     }
   }
 ?>
@@ -65,13 +78,13 @@
         <div class="mark">
           <h3>UTORid</h3>
           <h3>Name</h3>
+          <h3>Practical</h3>
           <h3>quiz 1</h3>
           <h3>quiz 2</h3>
           <h3>quiz 3</h3>
           <h3>A1</h3>
           <h3>A2</h3>
           <h3>A3</h3>
-          <h3>Practical</h3>
           <h3>Midterm</h3>
           <h3>Final</h3>
         </div>
@@ -79,19 +92,17 @@
           $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
           $result = mysqli_query($db, $sql);
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $mark_str = "";
+            foreach($mark_entries as $entry){
+                
+                $mark_str = $mark_str."<input type='number' min='0' max='100' name='marks[]' value='".$row[$entry]."'/>";
+
+            }
             echo "
             <div class='mark entry' id=".$row['utorid'].">
               <h3>".$row['utorid']."</h3>
               <h3>".$row['firstName']." ".$row['lastName']."</h3>
-              <input type='number' min='0' max='100' value='".$row['quiz1']."'/>
-              <input type='number' min='0' max='100' value='".$row['quiz2']."'/>
-              <input type='number' min='0' max='100' value='".$row['quiz3']."'/>
-              <input type='number' min='0' max='100' value='".$row['a1']."'/>
-              <input type='number' min='0' max='100' value='".$row['a2']."'/>
-              <input type='number' min='0' max='100' value='".$row['a3']."'/>
-              <input type='number' min='0' max='100' value='".$row['practical']."'/>
-              <input type='number' min='0' max='100' value='".$row['midterm']."'/>
-              <input type='number' min='0' max='100' value='".$row['final']."'/>
+              ".$mark_str."
             </div>
             ";
           }
