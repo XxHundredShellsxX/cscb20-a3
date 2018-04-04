@@ -42,6 +42,11 @@ midterm float not null,
 final float not null
 );
 
+create table cscb20.Feedback(
+body text,
+submittedAt varchar(255)
+);
+
 insert into cscb20.Students
 values(false, 'bob', 'B3AE908643D88CB3775BD8D4C3671B0D391723F6D09D305CA34248DC6C76F50D', 'Bob', 'Clark', '1234567891', 'attarwa', 80, 71, 88, 95, 40, 55, 78, 90, 100, null);
 
@@ -56,3 +61,4 @@ values('attarwa', 'CE7ACD1446EEB8B9649FF0C770EB264098097C33AA1CC67D84DA157749086
 
 insert into cscb20.Coursedetails
 values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40)
+
