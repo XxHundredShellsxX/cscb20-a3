@@ -6,7 +6,7 @@
   }
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     date_default_timezone_set('EST');
-    $sql = "insert into Feedback values (\"".$_POST['feedback']."\", '".date("Y-m-d H:i:s")."','".$_SESSION['account']."')";
+    $sql = "insert into Feedback values (\"".$_POST['feedback']."\", '".date("Y-m-d H:i:s")."','".$_POST['instructors']."')";
     if (mysqli_query($db, $sql)) {
       alert("Feedback successfully sent");
     } else {
@@ -71,22 +71,38 @@
           echo "<h1>view feedback</h1>
           <h2>this is the feedback submitted completely anonymously.</h2>
           <div class='feedbacks'>";
-          $sql = "select * from Feedback";
+          $sql = "select * from Feedback where instructorId = '".$_SESSION['utorid']."'";
           $result = mysqli_query($db, $sql);
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "<div class='feedback card'>
-            <h2>Submitted at ".$row['submittedAt']." by a ".$row['account']."</h2>
+            <h2>Submitted at ".$row['submittedAt']."</h2>
             <p>".$row['body']."</p>
             </div>";
           }
           echo '</div>';
-        } else {
+        } else if ($_SESSION['account'] == 'student') {
           echo "<h1>submit feedback</h1>
           <h2>this feedback is submitted completely anonymously.</h2>
           <form action='' method='post'>
             <div class='card'>
               <h2>feedback</h2>
-              <textarea maxlength='2000' name='feedback' required></textarea>
+              <select name='instructors'>";
+          $sql = "select * from Instructors";
+          $result = mysqli_query($db, $sql);
+          while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            echo "<option value='".$row['utorid']."'>".$row['firstName']." ".$row['lastName']."</option>";
+          }
+          echo "</select>
+              <textarea maxlength='2000' name='feedback' required>What do you like about the instructor teaching?
+
+What do you recommend the instructor to do to improve their teaching?
+
+What do you like about the labs?
+
+What do you recommend the lab instructors to do to improve their lab teaching?
+
+Any other feedback to send?
+</textarea>
               <button>Submit</button>
             </div>
           </form>";
