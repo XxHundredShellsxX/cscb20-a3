@@ -13,14 +13,20 @@
   $num_of_students = count($student_ids);
   $num_of_marks = count($mark_entries);
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $update_success = true;
     for($student_index = 0; $student_index < $num_of_students; $student_index++) {
       for($mark_index = 0; $mark_index < $num_of_marks; $mark_index++) {
         $curr_student = $student_ids[$student_index];
         $assessment = $mark_entries[$mark_index];
         $new_mark = $_POST['marks'][($student_index * ($num_of_marks)) + $mark_index];
         $sql_update_token = "update Students set $assessment = $new_mark where utorid = '$curr_student'";
-        mysqli_query($db, $sql_update_token);
+        if (!mysqli_query($db, $sql_update_token)) {
+          $update_success = false;
+        }
       }
+    }
+    if ($update_success) {
+      alert("Marks successfully updated.");
     }
   }
 ?>
@@ -74,6 +80,7 @@
     <div id="content">
       <h1>class marks</h1>
       <h2>class average: <?php echo $mark?>%</h2>
+      <p class="mark unverified">red background = unverified student account</p>
       <form action="" method="post" class="instructor-marks">
         <div class="mark">
           <h3>UTORid</h3>
@@ -98,8 +105,13 @@
                 $mark_str = $mark_str."<input type='number' min='0' max='100' name='marks[]' value='".$row[$entry]."'/>";
 
             }
+            if ($row['verified'] == "0") {
+              $verfied_status = "unverified";
+            } else {
+              $verfied_status = "";
+            }
             echo "
-            <div class='mark entry' id=".$row['utorid'].">
+            <div class='mark entry ".$verfied_status."' id=".$row['utorid'].">
               <h3>".$row['utorid']."</h3>
               <h3>".$row['firstName']." ".$row['lastName']."</h3>
               ".$mark_str."

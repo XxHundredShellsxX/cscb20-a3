@@ -43,10 +43,6 @@
   function generateToken() {
     return md5(uniqid(rand(), true));
   }
-
-  function alert($msg) {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-  }
 ?>
 <html>
   <head>

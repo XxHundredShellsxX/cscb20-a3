@@ -13,10 +13,6 @@
       alert("An unexpected error occured. Please try again.");
     }
   }
-
-  function alert($msg) {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-  }
 ?>
 <html lang="en">
 <head>

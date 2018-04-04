@@ -8,4 +8,8 @@
   $mark_entries = array('practical', 'quiz1', 'quiz2', 'quiz3', 'a1', 'a2', 'a3', 'midterm', 'final');
   $student_entries = array('utorid', 'firstName', 'lastName', 'studentNumber', 'instructorId', 'practical', 'quiz1', 'quiz2', 'quiz3', 'a1', 'a2', 'a3', 'midterm', 'final');
   $instructor_entries = array('utorid', 'firstName', 'lastName');
+
+  function alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+  }
 ?>
