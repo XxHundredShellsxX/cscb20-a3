@@ -96,91 +96,76 @@
       <div class="overview">
         <div class="card">
           <h2>Overall Average</h2>
-          <h3><?php echo $mark?>%</h3>
+          <h3><?php echo sprintf('%0.2f',$mark)?>%</h3>
         </div>
         <div class="card">
           <h2>Overall Class Average</h2>
-          <h3><?php echo $class_avg?>%</h3>
+          <h3><?php echo sprintf('%0.2f',$class_avg)?>%</h3>
         </div>
-
       </div>
       <div class="student-assessments">
-          <div class="whole c">
+          <div class="whole dark-header-fill">
             <h3>Name</h3>
           </div>
-          <div class="whole a">
+          <div class="whole light-fill">
             <h3>Practical</h3>
           </div>
-          <div class="whole b">
+          <div class="whole dark-fill">
             <h3>Quiz 1</h3>
           </div>
-          <div class="whole a">
+          <div class="whole light-fill">
             <h3>Quiz 2</h3>
           </div>
-          <div class="whole b">
+          <div class="whole dark-fill">
             <h3>Quiz 3</h3>
           </div>
-          <div class="whole a">
+          <div class="whole light-fill">
             <h3>Assignment 1</h3>
           </div>
-          <div class="whole b">
+          <div class="whole dark-fill">
             <h3>Assignment 2</h3>
           </div>
-          <div class="whole a">
+          <div class="whole light-fill">
             <h3>Assignment 3</h3>
           </div>
-          <div class="whole b">
+          <div class="whole dark-fill">
             <h3>Midterm</h3>
           </div>
-          <div class="whole a">
+          <div class="whole light-fill">
             <h3>Final</h3>
           </div>
       </div>
+
       <div class="student-marks">
-          <div class="whole c">
+          <div class="whole dark-header-fill">
             <h3>Grade</h3>
           </div>
-          <div class="whole a">
-            <h3><?php echo $_SESSION['practical'] ?>%</h3>
-          </div>
-          <div class="whole b">
-          <h3><?php echo $_SESSION['quiz1'] ?>%</h3>
-          </div>
-          <div class="whole a">
-          <h3><?php echo $_SESSION['quiz2'] ?>%</h3>
-          </div>
-          <div class="whole b">
-          <h3><?php echo $_SESSION['quiz3'] ?>%</h3>
-          </div>
-          <div class="whole a">
-          <h3><?php echo $_SESSION['a1'] ?>%</h3>
-          </div>
-          <div class="whole b">
-          <h3><?php echo $_SESSION['a2'] ?>%</h3>
-          </div>
-          <div class="whole a">
-          <h3><?php echo $_SESSION['a3'] ?>%</h3>
-          </div>
-          <div class="whole b">
-          <h3><?php echo $_SESSION['midterm'] ?>%</h3>
-          </div>
-          <div class="whole a">
-          <h3><?php echo $_SESSION['final'] ?>%</h3>
-          </div>
+          <?php
+          $count = 0;
+          foreach($mark_entries as $entry) {
+            $count += 1;
+            $colour = ($count % 2 == 0)? 'dark-fill' : 'light-fill';
+            echo "
+            <div class='whole ".$colour."'>
+              <h3>".sprintf('%0.2f',$_SESSION[$entry])."%</h3>
+            </div>
+            ";
+          }
+          ?>
       </div>
 
       <div class="student-marks">
-          <div class="whole c">
+          <div class="whole dark-header-fill">
             <h3>Class Average</h3>
           </div>
           <?php
           $count = 0;
           foreach($mark_entries as $entry) {
             $count += 1;
-            $colour = ($count % 2 == 0)? 'b' : 'a';
+            $colour = ($count % 2 == 0)? 'dark-fill' : 'light-fill';
             echo "
             <div class='whole ".$colour."'>
-              <h3>".round(assessment_avg($entry), 2)."%</h3>
+              <h3>".sprintf('%0.2f', assessment_avg($entry))."%</h3>
             </div>
             ";
           }
