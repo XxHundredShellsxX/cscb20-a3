@@ -4,6 +4,13 @@
   if (!isset($_SESSION['token'])){
     header("Location:../../auth/login");
   }
+  if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $assessment = $_GET['assessment'];
+    if (!$assessment) {
+      header("Location:index.php?assessment=practical");
+    }
+    $current_mark = $_SESSION[$assessment];
+  }
 ?>
 <html lang="en">
 <head>
@@ -17,6 +24,12 @@
     <link rel="stylesheet" type="text/css" href="../../css/index.css">
   
     <title>Dashboard | CSCB20</title>
+
+    <script>
+      function change_mark(assessment) {
+        window.location = 'index.php?assessment=' + assessment.value;
+      }
+    </script>
 </head>
 <body>
   <div id="container">
@@ -53,7 +66,23 @@
           </nav>
         </div>
     <div id="content">
-  
+      <h1>Remark request</h1>
+      <h2>Choose an assetment to submit for remark</h2>
+      <div class="assesment-grade">
+        <select name="assesments" id="assesments" onChange="change_mark(this)">
+          <?php
+            foreach($mark_entries as $entry) {
+              if ($entry == $assessment) {
+                $selected = "selected='selected'";
+              } else {
+                $selected = "";
+              }
+              echo "<option value='$entry' $selected>$entry</option>";
+            }
+          ?>
+        </select>
+        <p>your grade: <?php echo $current_mark ?>%</p>
+      </div>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>

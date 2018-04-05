@@ -529,6 +529,25 @@ footer i {
   margin: 4px;
 }
 
+.assesment-grade {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.assesment-grade select {
+  width: 120px;
+  height: 30px;;
+}
+
+.assesment-grade p {
+  margin: 0;
+  line-height: 30px;
+}
+
 @media (max-width: 720px) {
   #container {
     flex-direction: column;
