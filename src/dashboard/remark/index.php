@@ -4,46 +4,6 @@
   if (!isset($_SESSION['token'])){
     header("Location:../../auth/login");
   }
-  $mark = calculate_mark();
-  function calculate_mark() {
-    global $db;
-    global $mark_entries;
-    $sql = "select * from CourseDetails where courseCode='CSCB20'";
-    $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $mark = 0;
-    foreach($mark_entries as $entry) {
-      $mark += $_SESSION[$entry] * $row[$entry] * .01;
-    }
-    return $mark;
-  }
-  $class_avg = calculate_class_avg();
-  function calculate_class_avg() {
-    global $db;
-    global $mark_entries;
-    $sql = "select * from CourseDetails where courseCode='CSCB20'";
-    $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $average = 0;
-    // find total of every assessment
-    foreach($mark_entries as $entry) {
-      $average += assessment_avg($entry) * $row[$entry] * .01;
-    }
-    return round($average, 2);
-  }
-  function assessment_avg($assessment){
-    global $db;
-    $sql = "select * from Students";
-    $result = mysqli_query($db, $sql);
-    $total = 0;
-    $count = 0;
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $total += $row[$assessment];
-        $count += 1;
-        
-    }
-    return $total / $count;
-  }
 ?>
 <html lang="en">
 <head>
