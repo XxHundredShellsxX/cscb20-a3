@@ -89,7 +89,4 @@ insert into cscb20.Coursedetails
 values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40)
 
 insert into cscb20.Remarks
-values('katyalri', 'today', 0, null, 15, null, 'a2', 'i would like to get less marks');
-
-insert into Feedback values ('katyalri', '2018-04-05 12:05:36','0', null, 1, null, 'a3', "")
-
+values('katyalri', 'today', 0, null, 15, null, 'a2', 'i would like to get less marks', "");
