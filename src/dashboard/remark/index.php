@@ -93,74 +93,7 @@
           </nav>
         </div>
     <div id="content">
-      <div class="overview">
-        <div class="card">
-          <h2>My Average</h2>
-          <h3><?php echo sprintf('%0.2f',$mark)?>%</h3>
-        </div>
-        <div class="card">
-          <h2>Overall Class Average</h2>
-          <h3><?php echo sprintf('%0.2f',$class_avg)?>%</h3>
-        </div>
-      </div>
-      
-      <div class="student-assessments">
-          <div class="whole dark-header-fill">
-            <h3>Name</h3>
-          </div>
-          <?php
-          $count = 0;
-          foreach($mark_entries as $entry) {
-            $count += 1;
-            $colour = ($count % 2 == 0)? 'dark-fill' : 'light-fill';
-            echo "
-            <div class='whole ".$colour."'>
-              <h3>".$entry."</h3>
-            </div>
-            ";
-          }
-          ?>
-      </div>
-      <div class="student-marks">
-          <div class="whole dark-header-fill">
-            <h3>Grade</h3>
-          </div>
-          <?php
-          $count = 0;
-          foreach($mark_entries as $entry) {
-            $count += 1;
-            $colour = ($count % 2 == 0)? 'dark-fill' : 'light-fill';
-            echo "
-            <div class='whole ".$colour."'>
-              <h3>".sprintf('%0.2f',$_SESSION[$entry])."%</h3>
-            </div>
-            ";
-          }
-          ?>
-      </div>
-
-      <div class="student-marks">
-          <div class="whole dark-header-fill">
-            <h3>Class Average</h3>
-          </div>
-          <?php
-          $count = 0;
-          foreach($mark_entries as $entry) {
-            $count += 1;
-            $colour = ($count % 2 == 0)? 'dark-fill' : 'light-fill';
-            echo "
-            <div class='whole ".$colour."'>
-              <h3>".sprintf('%0.2f', assessment_avg($entry))."%</h3>
-            </div>
-            ";
-          }
-          ?>
-      </div>
-      <a href='../remark/'>
-        <div class='card'>
-          <h2>Click here for remark request for recent assignments</h2>
-        </div>
-      </a>
+  
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>
