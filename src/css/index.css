@@ -530,6 +530,10 @@ footer i {
   margin: 4px;
 }
 
+.remark input[type="number"] {
+  width: 80px;
+}
+
 .assesment-grade {
   width: 100%;
   display: flex;
