@@ -530,6 +530,7 @@ footer i {
 }
 
 .assesment-grade {
+  width: 100%;
   display: flex;
   flex-direction: row;
   height: 30px;

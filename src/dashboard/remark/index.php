@@ -66,7 +66,7 @@
           </nav>
         </div>
     <div id="content">
-      <h1>Remark request</h1>
+      <h1>Remark Request</h1>
       <h2>Choose an assetment to submit for remark</h2>
       <div class="assesment-grade">
         <select name="assesments" id="assesments" onChange="change_mark(this)">
@@ -96,6 +96,25 @@
           <button disabled="disabled">Submit Remark</button>
         </div>
       </form>
+      <h1>Previous Remark Requests</h1>
+      <?php
+        $sql_update_token = "select * from Remarks where createdBy = '".$_SESSION['utorid']."'";
+        $result = mysqli_query($db, $sql_update_token);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+          if ($row['approved'] == 0) {
+            $status = "pending";
+          } else {
+            $status = "reviewed";
+          }
+          echo "<div class='card'>";
+          echo "<div class='assesment-grade'>";
+          echo "<h2>remark for: ".$row['assessment']."</h2>";
+          echo "<h2>current status: ".$status."</h2>";
+          echo "</div>";
+          echo $row['remarkBody'];
+          echo "</div>";
+        }
+      ?>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>
