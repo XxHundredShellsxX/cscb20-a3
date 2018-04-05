@@ -7,13 +7,19 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $assessment = $_GET['assessment'];
     $current_mark = $_SESSION[$assessment];
-    date_default_timezone_set('EST');
-    $sql = "insert into Remarks values ('".$_SESSION['utorid']."', '".date("Y-m-d H:i:s")."','0', null, $current_mark, null, '$assessment', \"".$_POST['remarkBody']."\", null)";
-    if (mysqli_query($db, $sql)) {
-      alert("Remark request successfully submitted");
+    $sql_update_grade = "update Students set ".$_GET['assessment']." = ".$_POST['updatedGrade']." where utorid='".$_GET['utorid']."'";
+    $sql_update_remark = "update Remarks set approved = 1, approvedBy = '".$_SESSION['utorid']."', updatedGrade = ".$_POST['updatedGrade'].", remarkFeedback = '".$_POST['remarkFeedback']."' where createdBy = '".$_GET['utorid']."' and assessment = '".$_GET['assessment']."'";
+    if (mysqli_query($db, $sql_update_grade) && mysqli_query($db, $sql_update_remark)) {
+      alert("Remark request successfully updated");
     } else {
-      alert("There was a problem submitting the remark request");
+      alert("There was an error updating the remark request");
     }
+    // $sql = "insert into Remarks values ('".$_SESSION['utorid']."', '".date("Y-m-d H:i:s")."','0', null, $current_mark, null, '$assessment', \"".$_POST['remarkBody']."\", null)";
+    // if (mysqli_query($db, $sql)) {
+    //   alert("Remark request successfully submitted");
+    // } else {
+    //   alert("There was a problem submitting the remark request");
+    // }
   }
   function nl2p($text) {
     return '<p>'.str_replace(array("\r\n", "\r", "\n"), '</p><p>', $text).'</p>';
@@ -74,16 +80,18 @@
         </div>
     <div id="content">
       <h1>Remark Request</h1>
-      <h2>View current and past remark requests</h2>
+      <h2>current remark requests</h2>
       <?php
         $sql = "select * from Remarks where approved = 0";
         $result = mysqli_query($db, $sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+          echo "<form action='index.php?utorid=".$row['createdBy']."&assessment=".$row['assessment']."' method='post'>";
           echo "<div class='card remark'>";
           echo "<div class='assesment-grade'>";
+          echo "<h2>student utorid: ".$row['createdBy']."</h2>";
           echo "<h2>remark for: ".$row['assessment']."</h2>";
           echo "<h2>original mark: ".$row['originalGrade']."%</h2>";
-          echo "<h2>update mark: </h2><input type='number' value='".$row['originalGrade']."' />";
+          echo "<h2>update mark: </h2><input type='number' name='updatedGrade' value='".$row['originalGrade']."' />";
           if ($row['approved'] == 0) {
             $status = "pending";
             $feedback = "";
@@ -92,13 +100,14 @@
             $feedback = "<h2>Remarked by ".$row['approvedBy']."</h2>".nl2p($row['remarkFeedback']);
             echo "<h2>updated mark: ".$row['updatedGrade']."%</h2>";
           }
-          echo "<h2>status: ".$status."</h2>";
           echo "</div>";
+          echo "<h2>Student remark description:</h2>";
           echo nl2p($row['remarkBody']);
           echo $feedback;
-          echo "<textarea placeholder='Enter a response for the request.'></textarea>";
+          echo "<textarea placeholder='Enter a response for the request.' name='remarkFeedback' required></textarea>";
           echo "<button>Resolve</button>";
           echo "</div>";
+          echo "</form>";
         }
       ?>
       <h2>Previous Remark Requests</h2>
@@ -108,6 +117,7 @@
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
           echo "<div class='card remark'>";
           echo "<div class='assesment-grade'>";
+          echo "<h2>student utorid: ".$row['createdBy']."</h2>";
           echo "<h2>remark for: ".$row['assessment']."</h2>";
           echo "<h2>original mark: ".$row['originalGrade']."%</h2>";
           if ($row['approved'] == 0) {
@@ -120,6 +130,7 @@
           }
           echo "<h2>status: ".$status."</h2>";
           echo "</div>";
+          echo "<h2>Student remark description:</h2>";
           echo nl2p($row['remarkBody']);
           echo $feedback;
           echo "</div>";
