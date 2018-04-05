@@ -93,6 +93,7 @@ textarea {
   padding: 10px;
   font-size: 16px;
   font-family: 'Varela Round';
+  resize: none;
 }
 
 input[type="text"], input[type="password"], input[type="number"] {

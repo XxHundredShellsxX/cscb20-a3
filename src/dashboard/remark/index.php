@@ -11,6 +11,18 @@
     }
     $current_mark = $_SESSION[$assessment];
   }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $assessment = $_GET['assessment'];
+    $current_mark = $_SESSION[$assessment];
+    date_default_timezone_set('EST');
+    $sql = "insert into Feedback values ('".$_SESSION['utorid']."', '".date("Y-m-d H:i:s")."','0', null, $current_mark, null, $assessment, \"".$_POST['remarkBody']."\")";
+    echo $sql;
+    if (mysqli_query($db, $sql)) {
+      alert("Remark request successfully submitted");
+    } else {
+      alert("There was a problem submitting the remark request");
+    }
+  }
 ?>
 <html lang="en">
 <head>
@@ -93,7 +105,7 @@
         <div class="card">
           <h2>Explain your remark request here</h2>
           <textarea name="remarkBody" id="remarkBody" maxlength="2000"></textarea>
-          <button disabled="disabled">Submit Remark</button>
+          <button>Submit Remark</button>
         </div>
       </form>
       <h1>Previous Remark Requests</h1>
