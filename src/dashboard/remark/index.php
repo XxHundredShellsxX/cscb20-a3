@@ -72,6 +72,12 @@
         <select name="assesments" id="assesments" onChange="change_mark(this)">
           <?php
             foreach($mark_entries as $entry) {
+              $sql_update_token = "select * from Remarks where createdBy = '".$_SESSION['utorid']."' and assessment = '$entry'";
+              $result = mysqli_query($db, $sql_update_token);
+              $count = mysqli_num_rows($result);
+              if ($count > 0) {
+                continue;
+              }
               if ($entry == $assessment) {
                 $selected = "selected='selected'";
               } else {
@@ -83,6 +89,13 @@
         </select>
         <p>your grade: <?php echo $current_mark ?>%</p>
       </div>
+      <form action="" method="post">
+        <div class="card">
+          <h2>Explain your remark request here</h2>
+          <textarea name="remarkBody" id="remarkBody" maxlength="2000"></textarea>
+          <button disabled="disabled">Submit Remark</button>
+        </div>
+      </form>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>
