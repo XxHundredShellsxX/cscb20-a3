@@ -28,6 +28,13 @@ lastName VARCHAR(255) NOT NULL,
 authToken varchar(255)
 );
 
+create table cscb20.TAs
+(utorid VARCHAR(25) NOT NULL primary key,
+pass char(64) not null,
+firstName VARCHAR(255) NOT NULL,
+lastName VARCHAR(255) NOT NULL,
+authToken varchar(255)
+);
 
 create table cscb20.CourseDetails(
 courseCode varchar(25) not null primary key,
@@ -59,6 +66,10 @@ values(true, 'katyalri', '6BCD4F976170C0F12A59FBCB7FA948CCB437179A7CDD10B5507F35
 
 insert into cscb20.Instructors
 values('attarwa', 'CE7ACD1446EEB8B9649FF0C770EB264098097C33AA1CC67D84DA157749086F53', 'Abbas', 'Attarwala', null);
+
+insert into cscb20.Tas
+values('gatz', '90BFFE1884B84D5E255F12FF0ECBD70F2EDFC877B68D612DC6FB50638B3AC17C', 'Griffith', 'Gatz', null);
+
 
 insert into cscb20.Coursedetails
 values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40)
