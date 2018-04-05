@@ -57,6 +57,17 @@ submittedAt varchar(255),
 instructorId varchar(25)
 );
 
+create table cscb20.Remarks(
+createdBy varchar(25) not null,
+createdAt varchar(255) not null,
+approved boolean not null,
+approvedBy varchar(25),
+originalGrade float not null,
+updatedGrade float,
+assessment varchar(25),
+remarkBody text
+)
+
 insert into cscb20.Students
 values(false, 'bob', 'B3AE908643D88CB3775BD8D4C3671B0D391723F6D09D305CA34248DC6C76F50D', 'Bob', 'Clark', '1234567891', 'attarwa', 80, 71, 88, 95, 40, 55, 78, 90, 100, null);
 
