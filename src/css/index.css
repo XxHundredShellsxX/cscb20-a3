@@ -526,7 +526,7 @@ footer i {
   flex-direction: column-reverse;
 }
 
-.feedback p {
+.feedback p, .remark p {
   margin: 4px;
 }
 

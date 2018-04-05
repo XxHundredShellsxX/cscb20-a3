@@ -65,7 +65,8 @@ approvedBy varchar(25),
 originalGrade float not null,
 updatedGrade float,
 assessment varchar(25) not null,
-remarkBody text not null
+remarkBody text not null,
+remarkFeedback text
 )
 
 insert into cscb20.Students
@@ -89,3 +90,6 @@ values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40)
 
 insert into cscb20.Remarks
 values('katyalri', 'today', 0, null, 15, null, 'a2', 'i would like to get less marks');
+
+insert into Feedback values ('katyalri', '2018-04-05 12:05:36','0', null, 1, null, 'a3', "")
+

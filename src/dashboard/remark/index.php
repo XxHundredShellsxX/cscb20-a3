@@ -4,6 +4,7 @@
   if (!isset($_SESSION['token'])){
     header("Location:../../auth/login");
   }
+  $assessment = "practical";
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $assessment = $_GET['assessment'];
     if (!$assessment) {
@@ -15,13 +16,15 @@
     $assessment = $_GET['assessment'];
     $current_mark = $_SESSION[$assessment];
     date_default_timezone_set('EST');
-    $sql = "insert into Feedback values ('".$_SESSION['utorid']."', '".date("Y-m-d H:i:s")."','0', null, $current_mark, null, $assessment, \"".$_POST['remarkBody']."\")";
-    echo $sql;
+    $sql = "insert into Remarks values ('".$_SESSION['utorid']."', '".date("Y-m-d H:i:s")."','0', null, $current_mark, null, '$assessment', \"".$_POST['remarkBody']."\", null)";
     if (mysqli_query($db, $sql)) {
       alert("Remark request successfully submitted");
     } else {
       alert("There was a problem submitting the remark request");
     }
+  }
+  function nl2p($text) {
+    return '<p>'.str_replace(array("\r\n", "\r", "\n"), '</p><p>', $text).'</p>';
   }
 ?>
 <html lang="en">
@@ -110,20 +113,25 @@
       </form>
       <h1>Previous Remark Requests</h1>
       <?php
-        $sql_update_token = "select * from Remarks where createdBy = '".$_SESSION['utorid']."'";
-        $result = mysqli_query($db, $sql_update_token);
+        $sql = "select * from Remarks where createdBy = '".$_SESSION['utorid']."'";
+        $result = mysqli_query($db, $sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-          if ($row['approved'] == 0) {
-            $status = "pending";
-          } else {
-            $status = "reviewed";
-          }
-          echo "<div class='card'>";
+          echo "<div class='card remark'>";
           echo "<div class='assesment-grade'>";
           echo "<h2>remark for: ".$row['assessment']."</h2>";
-          echo "<h2>current status: ".$status."</h2>";
+          echo "<h2>original mark: ".$row['originalGrade']."%</h2>";
+          if ($row['approved'] == 0) {
+            $status = "pending";
+            $feedback = "";
+          } else {
+            $status = "completed";
+            $feedback = "<h2>Remarked by ".$row['approvedBy']."</h2>".nl2p($row['remarkFeedback']);
+            echo "<h2>updated mark: ".$row['updatedGrade']."%</h2>";
+          }
+          echo "<h2>status: ".$status."</h2>";
           echo "</div>";
-          echo $row['remarkBody'];
+          echo nl2p($row['remarkBody']);
+          echo $feedback;
           echo "</div>";
         }
       ?>
