@@ -4,6 +4,16 @@
   if (!isset($_SESSION['token'])){
     header("Location:../auth/login");
   }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    date_default_timezone_set('EST');
+    $sql = "insert into Announcements values ('".$_POST['title']."', '".$_POST['body']."', '".$_SESSION['utorid']."', '".date("Y-m-d H:i:s")."')";
+    echo $sql;
+    if (mysqli_query($db, $sql)) {
+      alert("Announcement successfully published");
+    } else {
+      alert("There was an error trying to publish");
+    }
+  }
   $mark = calculate_mark();
   function calculate_mark() {
     global $db;
@@ -49,10 +59,12 @@
   $join_requests = count_join_requests();
   function count_join_requests() {
     global $db;
-    $sql = "select * from Students where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
-    $result = mysqli_query($db, $sql);
+    $sql_student = "select * from Students where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
+    $result_student = mysqli_query($db, $sql_student);
+    $sql_ta = "select * from TAs where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
+    $result_ta = mysqli_query($db, $sql_ta);
     // get number of rows from result
-    $count = mysqli_num_rows($result);
+    $count = mysqli_num_rows($result_student) + mysqli_num_rows($result_ta);
     return $count;
   }
   $class_size = count_class_size();
@@ -63,6 +75,9 @@
     // get number of rows from result
     $count = mysqli_num_rows($result);
     return $count;
+  }
+  function nl2p($text) {
+    return '<p>'.str_replace(array("\r\n", "\r", "\n"), '</p><p>', $text).'</p>';
   }
 ?>
 <html lang="en">
@@ -192,6 +207,30 @@
           }
         ?>
       </div>
+      <?php
+        if ($_SESSION['account'] != 'student') {
+          echo "<form action=' method='post'>
+            <div class='card'>
+              <h2>Create new announcement</h2>
+              <input type='text' name='title' id='title' placeholder='Announcement Title' required>
+              <textarea name='body' id='body' placeholder='Announcement body...' required></textarea>
+              <button>Publish</button>
+            </div>
+          </form>";
+        }
+        echo "<h1>announcements</h1>
+        <div class='feedbacks'>";
+        $sql = "select * from Announcements";
+        $result = mysqli_query($db, $sql);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+          echo "<div class='card'>";
+          echo "<h2>".$row['title']."</h2>";
+          echo "<h4>By ".$row['createdBy']." at ".$row['createdAt']."</h4>";
+          echo nl2p($row['body']);
+          echo "</div>";
+        }
+        echo '</div>';
+      ?>
       <footer>
         <p><b>Made with <i class="feather icon-heart"></i> by Rikin Katyal & Sajid Rahman</b></p>
         <p><a href="https://www.utoronto.ca/" target="_">University of Toronto</a> | <a href="http://web.cs.toronto.edu/" target="_">U of T Department of Computer Science</a> | <a href="http://www.utsc.utoronto.ca/home/" target="_">UTSC</a> | <a href="https://www.utsc.utoronto.ca/cms/computer-science-mathematics-statistics" target="_">UTSC CMS</a> | <a href="http://www.utsc.utoronto.ca/labs/"> UTSC Labs</a></p>

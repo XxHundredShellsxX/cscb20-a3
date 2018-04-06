@@ -67,7 +67,14 @@ updatedGrade float,
 assessment varchar(25) not null,
 remarkBody text not null,
 remarkFeedback text
-)
+);
+
+create table cscb20.Announcements(
+title varchar(255) not null,
+body text not null,
+createdBy varchar(25) not null,
+createdAt varchar(255) not null
+);
 
 insert into cscb20.Students
 values(false, 'bob', 'B3AE908643D88CB3775BD8D4C3671B0D391723F6D09D305CA34248DC6C76F50D', 'Bob', 'Clark', '1234567891', 'attarwa', 80, 71, 88, 95, 40, 55, 78, 90, 100, null);
@@ -86,7 +93,8 @@ values(0, 'gatz', '90BFFE1884B84D5E255F12FF0ECBD70F2EDFC877B68D612DC6FB50638B3AC
 
 
 insert into cscb20.Coursedetails
-values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40)
+values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40);
 
 insert into cscb20.Remarks
 values('katyalri', 'today', 0, null, 15, null, 'a2', 'i would like to get less marks', "");
+
