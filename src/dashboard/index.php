@@ -33,7 +33,9 @@
   }
   function assessment_avg($assessment){
     global $db;
-    $sql = "select * from Students where verified = 1 and instructorId = '".$_SESSION['utorid']."'";
+    $instructorId = ($_SESSION['account'] == 'instructor') ? $_SESSION['utorid'] : $_SESSION['instructorId'];
+
+    $sql = "select * from Students where verified = 1 and instructorId = '".$instructorId."'";
     $result = mysqli_query($db, $sql);
     $total = 0;
     $count = 0;
@@ -93,16 +95,40 @@
                 <h2><i class="feather icon-monitor"></i>dashboard</h2>
               </div>
             </a>
-            <a href="./<?php if ($_SESSION['account'] == 'instructor') echo "instructor/" ?>marks/">
+            <a href="./<?php if ($_SESSION['account'] == 'instructor' or $_SESSION['account'] == 'ta') echo "instructor/" ?>marks/">
               <div class="nav-item">
                 <h2><i class="feather icon-hash"></i>marks</h2>
               </div>
             </a>
-            <a href="./feedback">
+            <! only let students and instructor have access to feedback page !>
+            <?php 
+              if ($_SESSION['account'] != 'ta'){
+                echo "
+                <a href='./feedback'>
+                  <div class='nav-item'>
+                    <h2><i class='feather icon-clipboard'></i>feedback</h2>
+                  </div>
+                </a>
+                ";
+              }
+            ?>
+            <! different remark page for instructs and tas vs students !>
+            <a href="./<?php if ($_SESSION['account'] == 'instructor' or $_SESSION['account'] == 'ta') echo "instructor/" ?>remark/">
               <div class="nav-item">
-                <h2><i class="feather icon-clipboard"></i>feedback</h2>
+                <h2><i class="feather icon-edit-1"></i>remark request</h2>
               </div>
             </a>
+            <?php 
+              if ($_SESSION['account'] == 'instructor'){
+                echo "
+                <a href='./instructor/requests'>
+                  <div class='nav-item'>
+                    <h2><i class='feather icon-user-plus'></i>join requests</h2>
+                  </div>
+                </a>
+                ";
+              }
+            ?>
             <a href="../auth/logout/">
               <div class="nav-item">
                 <h2><i class="feather icon-log-out"></i>logout</h2>

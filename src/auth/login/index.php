@@ -74,7 +74,7 @@
         alert("Wrong login");
       }
     }
-    else {
+    else if ($_POST['radios'] == 'ta') {
       // generate query for students
       $sql = "select * from Tas where utorid = '$UTORid' and pass = '$password'";
       // get result from sql query on db

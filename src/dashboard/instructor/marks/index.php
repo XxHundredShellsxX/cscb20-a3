@@ -92,11 +92,35 @@
                 <h2><i class="feather icon-hash"></i>marks</h2>
               </div>
             </a>
-            <a href="../../feedback/">
+            <! only let students and instructor have access to feedback page !>
+            <?php 
+              if ($_SESSION['account'] != 'ta'){
+                echo "
+                <a href='../../feedback'>
+                  <div class='nav-item'>
+                    <h2><i class='feather icon-clipboard'></i>feedback</h2>
+                  </div>
+                </a>
+                ";
+              }
+            ?>
+            <! different remark page for instructs and tas vs students !>
+            <a href="../../<?php if ($_SESSION['account'] == 'instructor' or $_SESSION['account'] == 'ta') echo "instructor/" ?>remark/">
               <div class="nav-item">
-                <h2><i class="feather icon-clipboard"></i>feedback </h2>
+                <h2><i class="feather icon-edit-1"></i>remark request</h2>
               </div>
             </a>
+            <?php 
+              if ($_SESSION['account'] == 'instructor'){
+                echo "
+                <a href='../requests'>
+                  <div class='nav-item'>
+                    <h2><i class='feather icon-user-plus'></i>join requests</h2>
+                  </div>
+                </a>
+                ";
+              }
+            ?>
             <a href="../../../../auth/logout/">
               <div class="nav-item">
                 <h2><i class="feather icon-log-out"></i>logout</h2>

@@ -85,6 +85,12 @@
                 <h2><i class="feather icon-clipboard"></i>feedback </h2>
               </div>
             </a>
+            <! different remark page for instructs and tas vs students !>
+            <a href="../remark">
+              <div class="nav-item">
+                <h2><i class="feather icon-edit-1"></i>remark request</h2>
+              </div>
+            </a>
             <a href="../../auth/logout/">
               <div class="nav-item">
                 <h2><i class="feather icon-log-out"></i>logout</h2>

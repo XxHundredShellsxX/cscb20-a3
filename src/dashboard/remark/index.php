@@ -53,7 +53,7 @@
           <h1>cscb20</h1>
           <h4>introduction to databases & web applications</h4>
           <nav>
-            <a href="../../">
+          <a href="../../">
               <div class="nav-item">
                 <h2><i class="feather icon-home"></i>home</h2>
               </div>
@@ -63,14 +63,19 @@
                 <h2><i class="feather icon-monitor"></i>dashboard</h2>
               </div>
             </a>
-            <a href="./">
-              <div class="nav-item active">
+            <a href="../marks/">
+              <div class="nav-item">
                 <h2><i class="feather icon-hash"></i>marks</h2>
               </div>
             </a>
             <a href="../feedback/">
               <div class="nav-item">
                 <h2><i class="feather icon-clipboard"></i>feedback </h2>
+              </div>
+            </a>
+            <a href="./">
+              <div class="nav-item active">
+                <h2><i class="feather icon-edit-1"></i>remark request</h2>
               </div>
             </a>
             <a href="../../auth/logout/">
