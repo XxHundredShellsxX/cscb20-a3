@@ -33,8 +33,8 @@
   }
   function assessment_avg($assessment){
     global $db;
+    // different way of getting instructor id depending on if instructor or TA
     $instructorId = ($_SESSION['account'] == 'instructor') ? $_SESSION['utorid'] : $_SESSION['instructorId'];
-
     $sql = "select * from Students where verified = 1 and instructorId = '".$instructorId."'";
     $result = mysqli_query($db, $sql);
     $total = 0;

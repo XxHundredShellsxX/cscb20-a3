@@ -45,7 +45,9 @@
   }
   function assessment_avg($assessment){
     global $db;
-    $sql = "select * from Students where verified = 1 and instructorId = '".$_SESSION['utorid']."'";
+    // different way of getting instructor id depending on if instructor or TA
+    $instructorId = ($_SESSION['account'] == 'instructor') ? $_SESSION['utorid'] : $_SESSION['instructorId'];
+    $sql = "select * from Students where verified = 1 and instructorId = '".$instructorId."'";
     $result = mysqli_query($db, $sql);
     $total = 0;
     $count = 0;
@@ -147,14 +149,14 @@
           <h3>Final</h3>
         </div>
         <?php
-          $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
+          // different way of getting instructor id depending on if instructor or TA
+          $instructorId = ($_SESSION['account'] == 'instructor') ? $_SESSION['utorid'] : $_SESSION['instructorId'];
+          $sql = "select * from Students where instructorId = '".$instructorId."'";
           $result = mysqli_query($db, $sql);
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $mark_str = "";
             foreach($mark_entries as $entry){
-                
                 $mark_str = $mark_str."<input type='number' min='0' max='100' name='marks[]' value='".$row[$entry]."'/>";
-
             }
             if ($row['verified'] == "0") {
               $verfied_status = "unverified";
