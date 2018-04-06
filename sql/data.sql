@@ -79,7 +79,6 @@ createdAt varchar(255) not null
 insert into cscb20.Instructors
 values('attarwa', 'CE7ACD1446EEB8B9649FF0C770EB264098097C33AA1CC67D84DA157749086F53', 'Abbas', 'Attarwala', null);
 
-
 insert into cscb20.CourseDetails
 values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40);
 
