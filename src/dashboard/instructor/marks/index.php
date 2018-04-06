@@ -96,7 +96,7 @@
                 <h2><i class="feather icon-hash"></i>marks</h2>
               </div>
             </a>
-            <! only let students and instructor have access to feedback page !>
+            //only let students and instructor have access to feedback page
             <?php 
               if ($_SESSION['account'] != 'ta'){
                 echo "
@@ -108,7 +108,6 @@
                 ";
               }
             ?>
-            <! different remark page for instructs and tas vs students !>
             <a href="../../<?php if ($_SESSION['account'] == 'instructor' or $_SESSION['account'] == 'ta') echo "instructor/" ?>remark/">
               <div class="nav-item">
                 <h2><i class="feather icon-edit-1"></i>remark request</h2>

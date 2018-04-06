@@ -66,7 +66,6 @@
                 <h2><i class="feather icon-hash"></i>marks</h2>
               </div>
             </a>
-            <! only let students and instructor have access to feedback page !>
             <?php 
               if ($_SESSION['account'] != 'ta'){
                 echo "
