@@ -1,7 +1,7 @@
 <?php
   include("../../../auth/config.php");
   session_start();
-  if (!isset($_SESSION['token'])){
+  if (!isset($_SESSION['token']) || $_SESSION['account'] == 'student'){
     header("Location:../../../auth/login");
   }
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
