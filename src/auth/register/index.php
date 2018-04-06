@@ -21,7 +21,7 @@
     } else {
       $password = hash('sha256', $password);
       if ($_POST['radios'] == 'student') {
-        $sql = "insert into cscb20.Students values(0, '$UTORid', '$password', '$firstName', '$lastName', '$firstName', 'attarwa', 0, 0, 0, 0, 0, 0, 0, 0, 0, null)";
+        $sql = "insert into Students values(0, '$UTORid', '$password', '$firstName', '$lastName', '$firstName', 'attarwa', 0, 0, 0, 0, 0, 0, 0, 0, 0, null)";
         if (mysqli_query($db, $sql)) {
           $_SESSION['utorid'] = $UTORid;
           $_SESSION['firstName'] = $firstName;

@@ -58,11 +58,7 @@
         $count += 1;
         
     }
-    if ($count == 0) {
-      return $total;
-    } else {
-      return $total / $count;
-    }
+    return $total / $count;
   }
 ?>
 <html lang="en">

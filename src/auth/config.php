@@ -1,4 +1,5 @@
 <?php
+  error_reporting(0);
   define('DB_SERVER', 'localhost');
   define('DB_USERNAME', 'katyalri');
   define('DB_PASSWORD', 'katyalri');
