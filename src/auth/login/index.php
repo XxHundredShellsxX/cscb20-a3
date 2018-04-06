@@ -109,11 +109,12 @@
       }
     }
   }
-
-  if ($_GET['ref'] == "logout") {
-    alert("Successfully logged out");
-  } else if ($_GET['ref'] == "signup") {
-    alert("An instructor must approve your account before you can login.");
+  if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['ref'])) {
+    if ($_GET['ref'] == "logout") {
+      alert("Successfully logged out");
+    } else if ($_GET['ref'] == "signup") {
+      alert("An instructor must approve your account before you can login.");
+    }
   }
 
   function generateToken() {

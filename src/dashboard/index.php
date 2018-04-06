@@ -54,7 +54,11 @@
         $count += 1;
         
     }
-    return $total / $count;
+    if ($count == 0) {
+      return $total;
+    } else {
+      return $total / $count;
+    }
   }
   $join_requests = count_join_requests();
   function count_join_requests() {

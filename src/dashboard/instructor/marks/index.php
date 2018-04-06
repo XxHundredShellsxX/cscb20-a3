@@ -2,7 +2,7 @@
   include("../../../auth/config.php");
   session_start();
   if (!isset($_SESSION['token']) || $_SESSION['account'] == 'student'){
-    header("Location:../../../../auth/login");
+    header("Location:../../../auth/login");
   }
   $student_ids = array();
   // different way of getting instructor id depending on if instructor or TA
@@ -58,7 +58,11 @@
         $count += 1;
         
     }
-    return $total / $count;
+    if ($count == 0) {
+      return $total;
+    } else {
+      return $total / $count;
+    }
   }
 ?>
 <html lang="en">
@@ -67,10 +71,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-    <script src="../../../../js/index.js"></script>
+    <script src="../../../js/index.js"></script>
   
-    <link rel="stylesheet" type="text/css" href="../../../../css/feather.css">
-    <link rel="stylesheet" type="text/css" href="../../../../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/feather.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/index.css">
   
     <title>Dashboard | CSCB20</title>
 </head>
@@ -81,7 +85,7 @@
           <h1>cscb20</h1>
           <h4>introduction to databases & web applications</h4>
           <nav>
-            <a href="../../../../">
+            <a href="../../../">
               <div class="nav-item">
                 <h2><i class="feather icon-home"></i>home</h2>
               </div>
@@ -124,7 +128,7 @@
                 ";
               }
             ?>
-            <a href="../../../../auth/logout/">
+            <a href="../../../auth/logout/">
               <div class="nav-item">
                 <h2><i class="feather icon-log-out"></i>logout</h2>
               </div>
