@@ -5,7 +5,9 @@
     header("Location:../../../../auth/login");
   }
   $student_ids = array();
-  $sql = "select * from Students where instructorId = '".$_SESSION['utorid']."'";
+  // different way of getting instructor id depending on if instructor or TA
+  $instructorId = ($_SESSION['account'] == 'instructor') ? $_SESSION['utorid'] : $_SESSION['instructorId'];
+  $sql = "select * from Students where instructorId = '".$instructorId."'";
   $result = mysqli_query($db, $sql);
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
       $student_ids[] = $row['utorid'];
