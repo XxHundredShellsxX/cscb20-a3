@@ -33,7 +33,7 @@
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $ta_ids[] = $row['utorid'];
     }
-    $num_of_tas = count($student_ids);
+    $num_of_tas = count($ta_ids);
     for($ta_index = 0; $ta_index < $num_of_tas; $ta_index++) {
       $curr_ta = $ta_ids[$ta_index];
       $radioID = 'approval_ta'.$ta_index;
