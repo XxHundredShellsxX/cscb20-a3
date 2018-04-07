@@ -21,7 +21,7 @@
     } else {
       $password = hash('sha256', $password);
       if ($_POST['radios'] == 'student') {
-        $sql = "insert into Students values(0, '$UTORid', '$password', '$firstName', '$lastName', '$firstName', 'attarwa', 0, 0, 0, 0, 0, 0, 0, 0, 0, null)";
+        $sql = "insert into Students values(0, '$UTORid', '$password', '$firstName', '$lastName', '$studentNumber', 'attarwa', 0, 0, 0, 0, 0, 0, 0, 0, 0, null)";
         if (mysqli_query($db, $sql)) {
           $_SESSION['utorid'] = $UTORid;
           $_SESSION['firstName'] = $firstName;
@@ -33,8 +33,17 @@
           alert("An error occured when trying to sign up.");
         }
       } else {
-        // query ta to see if utorid or student number is already in use
-         // if new account, add user with verified as 0 (false)
+        $sql = "insert into Students values(0, '$UTORid', '$password', '$firstName', '$lastName', '$studentNumber', 'attarwa')";
+        if (mysqli_query($db, $sql)) {
+          $_SESSION['utorid'] = $UTORid;
+          $_SESSION['firstName'] = $firstName;
+          $_SESSION['lastName'] = $lastName;
+          $_SESSION['studentNumber'] = $studentNumber;
+          $_SESSION['instructorId'] = "attarwa";
+          header("Location:../login?ref=signup");
+        } else {
+          alert("An error occured when trying to sign up.");
+        }
       }
     }
     
