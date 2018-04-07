@@ -6,12 +6,43 @@
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    foreach ($_POST['approval_student'] as $approval_student) {
-      $sql_update_token = "update Students set verified = 1 where utorid = '$approval_student'";
+    $student_ids = array();
+    // different way of getting instructor id depending on if instructor or TA
+    $instructorId = ($_SESSION['account'] == 'instructor') ? $_SESSION['utorid'] : $_SESSION['instructorId'];
+    $sql = "select * from Students where instructorId = '".$instructorId."' and verified = 0";
+    $result = mysqli_query($db, $sql);
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $student_ids[] = $row['utorid'];
+    }
+    $num_of_students = count($student_ids);
+    for($student_index = 0; $student_index < $num_of_students; $student_index++) {
+      $curr_student = $student_ids[$student_index];
+      $radioID = 'approval_student'.$student_index;
+      if($_POST[$radioID] == "approved"){
+        $sql_update_token = "update Students set verified = 1 where utorid = '$curr_student'";
+      }
+      else{
+        $sql_update_token = "delete from Students where utorid = '$curr_student'";
+      }
       mysqli_query($db, $sql_update_token);
     }
-    foreach ($_POST['approval_ta'] as $approval_ta) {
-      $sql_update_token = "update TAs set verified = 1 where utorid = '$approval_ta'";
+
+    $ta_ids = array();
+    $sql = "select * from Tas where instructorId = '".$instructorId."' and verified = 0";
+    $result = mysqli_query($db, $sql);
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $ta_ids[] = $row['utorid'];
+    }
+    $num_of_tas = count($student_ids);
+    for($ta_index = 0; $ta_index < $num_of_tas; $ta_index++) {
+      $curr_ta = $ta_ids[$ta_index];
+      $radioID = 'approval_ta'.$ta_index;
+      if($_POST[$radioID] == "approved"){
+        $sql_update_token = "update Tas set verified = 1 where utorid = '$curr_ta'";
+      }
+      else{
+        $sql_update_token = "delete from Tas where utorid = '$curr_ta'";
+      }
       mysqli_query($db, $sql_update_token);
     }
   }
@@ -88,10 +119,12 @@
           <h3>Last Name</h3>
           <h3>Account</h3>
           <h3>Approve</h3>
+          <h3>Disapprove</h3>
         </div>
         <?php
           $sql = "select * from Students where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
           $result = mysqli_query($db, $sql);
+          $count = 0;
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "
             <div class='mark'>
@@ -99,22 +132,27 @@
               <h3>".$row['firstName']."</h3>
               <h3>".$row['lastName']."</h3>
               <h3>Student</h3>
-              <input type='checkbox' name='approval_student[]' value='".$row['utorid']."'>
+              <input type='radio' name='approval_student".$count."' value='approved' checked='checked'>
+              <input type='radio' name='approval_student".$count."' value='disapproved'>
             </div>
             ";
+            $count += 1;
           }
-          $sql = "select * from TAs where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
+          $sql = "select * from Tas where verified = 0 and instructorId = '".$_SESSION['utorid']."'";
           $result = mysqli_query($db, $sql);
+          $count = 0;
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "
             <div class='mark'>
               <h3>".$row['utorid']."</h3>
               <h3>".$row['firstName']."</h3>
               <h3>".$row['lastName']."</h3>
-              <h3>TA</h3>
-              <input type='checkbox' name='approval_ta[]' value='".$row['utorid']."'>
+              <h3>Ta</h3>
+              <input type='radio' name='approval_ta".$count."' value='approved' checked='checked'>
+              <input type='radio' name='approval_ta".$count."' value='disapproved'>
             </div>
             ";
+            $count += 1;
           }
         ?>
         <button>Save Changes</button>

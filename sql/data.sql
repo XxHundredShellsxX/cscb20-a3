@@ -79,6 +79,18 @@ createdAt varchar(255) not null
 insert into cscb20.Instructors
 values('attarwa', 'CE7ACD1446EEB8B9649FF0C770EB264098097C33AA1CC67D84DA157749086F53', 'Abbas', 'Attarwala', null);
 
+insert into cscb20.Students
+values(true, 'rahma506', '916568869D5F7EC833CFEF84A57A6080784782E780732C7F354E32F2865C795D', 'Sajid', 'Rahman', '1004368597', 'attarwa', 60, 71, 84, 20, 50, 85, 76, 99, 80, null);
+
+insert into cscb20.Students
+values(true, 'katyalri', '6BCD4F976170C0F12A59FBCB7FA948CCB437179A7CDD10B5507F35A3B1A3F9E3', 'Rikin', 'Katyal', '1003963543', 'attarwa', 100, 21, 34, 57, 70, 45, 56, 45, 40, null);
+
+insert into cscb20.Students
+values(false, 'joe102', '6BCD4F976170C0F12A59FBCB7FA948CCB437179A7CDD10B5507F35A3B1A3F9E3', 'Rikin', 'Katyal', '1003963543', 'attarwa', 100, 21, 34, 57, 70, 45, 56, 45, 40, null);
+
+insert into cscb20.Students
+values(false, 'tom674', '6BCD4F976170C0F12A59FBCB7FA948CCB437179A7CDD10B5507F35A3B1A3F9E3', 'Rikin', 'Katyal', '1003963543', 'attarwa', 100, 21, 34, 57, 70, 45, 56, 45, 40, null);
+
 insert into cscb20.CourseDetails
 values('CSCB20', 5, 3, 3, 4, 10, 10, 10, 15, 40);
 

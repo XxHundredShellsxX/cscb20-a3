@@ -134,7 +134,6 @@
     <div id="content">
       <h1>class marks</h1>
       <h2>class average: <?php echo $class_avg?>%</h2>
-      <p class="mark unverified">red background = unverified student account</p>
       <form action="" method="post" class="instructor-marks">
         <div class="mark">
           <h3>UTORid</h3>
@@ -155,22 +154,21 @@
           $sql = "select * from Students where instructorId = '".$instructorId."'";
           $result = mysqli_query($db, $sql);
           while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $mark_str = "";
-            foreach($mark_entries as $entry){
-                $mark_str = $mark_str."<input type='number' min='0' max='100' name='marks[]' value='".$row[$entry]."'/>";
+            if ($row['verified'] == "1") {
+                $mark_str = "";
+                foreach($mark_entries as $entry){
+                    
+                      $mark_str = $mark_str."<input type='number' min='0' max='100' name='marks[]' value='".$row[$entry]."'/>";
+            
+                }
+                echo "
+                <div class='mark entry ".$verfied_status."' id=".$row['utorid'].">
+                  <h3>".$row['utorid']."</h3>
+                  <h3>".$row['firstName']." ".$row['lastName']."</h3>
+                  ".$mark_str."
+                </div>
+                ";
             }
-            if ($row['verified'] == "0") {
-              $verfied_status = "unverified";
-            } else {
-              $verfied_status = "";
-            }
-            echo "
-            <div class='mark entry ".$verfied_status."' id=".$row['utorid'].">
-              <h3>".$row['utorid']."</h3>
-              <h3>".$row['firstName']." ".$row['lastName']."</h3>
-              ".$mark_str."
-            </div>
-            ";
           }
         ?>
         <button>Save Changes</button>
