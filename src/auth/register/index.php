@@ -33,7 +33,7 @@
           alert("An error occured when trying to sign up.");
         }
       } else {
-        $sql = "insert into Students values(0, '$UTORid', '$password', '$firstName', '$lastName', '$studentNumber', 'attarwa')";
+        $sql = "insert into TAs values(0, '$UTORid', '$password', '$firstName', '$lastName', '$studentNumber', 'attarwa')";
         if (mysqli_query($db, $sql)) {
           $_SESSION['utorid'] = $UTORid;
           $_SESSION['firstName'] = $firstName;
