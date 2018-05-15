@@ -6,13 +6,13 @@ The website includes course syllabus, important announcements, required software
 important dates.
 
 ## Required Software
-- MySQL IDE
+- MySQL
 - Server Environment such as MAMP
-- Text Editor
 
 ## Getting Started
-Run all the queries in sql/data.sql to 
-Use a text editor and configure auth/config.php so that it has the correct server, username, and password
+Run all the queries in sql/data.sql
+
+Configure auth/config.php so that it has the correct server, username, and password
 ```
  define('DB_SERVER', 'localhost');
  define('DB_USERNAME', 'root');
@@ -24,6 +24,6 @@ Run the website on local host
 - PHP
 - HTML
 - CSS
-- MYSQL
+- MySQL
 
-## Made by Rikin Katyal and Sajid Rahman
+Made by [Rikin Katyal](https://github.com/sirvar) and Sajid Rahman
