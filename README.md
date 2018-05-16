@@ -26,4 +26,4 @@ Run the website on local host
 - CSS
 - MySQL
 
-Made by [Rikin Katyal](https://github.com/sirvar) and Sajid Rahman
+Made by [Rikin Katyal](https://github.com/sirvar) and [Sajid Rahman](https://github.com/XxHundredShellsxX)
